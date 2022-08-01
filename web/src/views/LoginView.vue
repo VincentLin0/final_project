@@ -1,0 +1,399 @@
+<template lang="">
+  <div class = "box">
+    <HeadBar></HeadBar>
+    <div>
+      <img  src="../assets/img/logo1.svg"  alt="cannot  show"  class="logo">
+    </div>
+    <div class="login" id="login">
+      <h2 class = "title">Welcome to log in</h2>
+      <div class="input-wrap">
+        <!-- <label for="male">Account number:</label> -->
+        <input id = "inputbox1" type="text" v-model="loginForm.username" placeholder="Account number"/>
+        
+      </div>
+      <div class="input-wrap">
+        <!-- <label for="male">Password：</label> -->
+        <input id = "inputbox2" type="password" v-model="loginForm.password" placeholder="Password"/>
+      </div>
+      <div class="input-wrap">
+        <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
+        <button id= "Login" @click="login">Log in</button>&nbsp;&nbsp;
+        <button id= "Register" @click="regist">Register</button>
+      </div>
+    </div>
+  <div id="app">
+    <BottomBar></BottomBar>
+  </div>
+  </div>
+</template>
+<script>
+import HeadBar from '../components/HeadBar.vue'
+import BottomBar from '../components/BottomBar.vue'
+import request from '../utils/request'
+import { mapMutations } from 'vuex';
+import { Loading } from 'element-ui';
+
+export default {
+    name: 'App',
+  components: {
+    HeadBar,
+    BottomBar,
+  },
+
+  data () {
+    return {
+      loginForm:{
+      username: '',
+      password: ''
+      },
+      userToken:''
+    };
+  },
+  methods: {
+    // login () {     
+
+    //   const username = this.username
+    //   const password = this.password
+    //   if(username.length == 0 || password.length == 0) {
+    //     alert('Please enter your account and password!')
+    //     return;
+    //   }
+
+    //   request.post("users/login",{username:username,password:password}).then(res=>{
+    //     console.log(res);
+    //     if(res.success === true){
+    //       alert(res.msg);
+    //       this.$router.push({path:"/"});
+    //     }else{
+    //         alert(res.msg);
+    //       }
+      // })
+
+
+      // this.$axios
+      //     .post("/user/login",{
+      //       username: username,
+      //       password: password,
+      //     })
+      //     .then((resp) => {
+      //       console.log(resp);
+      //       let code = resp.data.code;
+      //       alert(code)
+      //     if(code === 200){
+      //       alert("successful!");
+      //       this.$router.push({path:"/"});
+      //     }else{
+      //       alert("login failure!");
+      //     }
+      //     });  
+    // },
+    regist(){
+      this.$router.push({path:"/signup"})
+    },
+    // regist(){
+    //   const username = this.username
+    //   const password = this.password
+    //   if(username.length == 0 || password.length == 0) {
+    //     alert('Please enter your account and password!')
+    //     return;
+    //   }
+
+    //   request.post("user/regist",{username:username,password:password}).then(res=>{
+    //     console.log(res);
+    //     if(res.success === true){
+    //       alert(res.msg);
+    //       alert("please log in");
+    //     }else{
+    //         alert(res.msg);
+    //       }
+    //   })
+    // }
+...mapMutations(['changeLogin']),
+    login () {
+      
+      let _this = this;
+      if (this.loginForm.username === '' || this.loginForm.password === '') {
+        this.$message({
+        message: 'Please enter your account number and password',
+        type: 'warning'
+        });
+      } else {
+        // this.axios({
+        //   method: 'post',
+        //   url: '/users/login',
+        //   data: _this.loginForm
+        // })
+        let loadingInstance = Loading.service({ fullscreen: true });
+        request.post("users/login",_this.loginForm).then(res => {
+          let token = res.data.token
+          let userInfo = res.data
+
+          localStorage.setItem("userInfo",JSON.stringify(userInfo))
+          localStorage.setItem("token",token)
+
+           console.log(res);
+          _this.userToken = '';
+          // console.log(_this.userToken)
+          // 将用户token保存到vuex中
+          _this.changeLogin({ Authorization: '' });
+          // alert('Log in successfully');
+          loadingInstance.close();
+          this.$message({
+          message:'Log in successfully',
+          type:'success'});
+          _this.$router.push('/');
+          }).catch(error => {
+          //  alert('Log in unsuccessful');
+          loadingInstance.close();
+          this.$message.error('Log in unsuccessful');
+           console.log(error);
+        });
+      }
+      }
+  }
+}
+
+</script>
+ 
+<style>
+.box{
+  background-color:aliceblue;
+}
+.title{
+  font-size: 24px;
+  margin-left: 115px;
+}
+.login {
+  width: 456px;
+  height: 396px;
+  padding:10px;
+  border:0px solid;
+  border-radius:7px;
+  background-color: white;
+  box-shadow: 1px 1px 5px #c4c4c4;
+  /*margin: 20% auto;*/
+  margin-top: -320px;
+  margin-left: 50%;
+  cursor:pointer;
+  /* margin-top: 20px; */
+}
+.logo{
+  margin-top: 150px;
+  margin-left: 12%;
+  width: 300px;
+}
+
+#inputbox1{
+  width: 364px;
+  height: 53px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 35px ;
+
+
+}
+#inputbox2{
+  width: 364px;
+  height: 53px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 35px ;
+}
+#Login{
+  width: 364px;
+  height: 53px;
+  background-color: rgb(80,130,241);
+  border:0px solid;
+  border-radius:5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left:55px;
+  cursor:pointer;
+}
+
+#Register{
+  width: 364px;
+  height: 53px;
+  background-color: rgb(95,170,63);
+  border:0px solid;
+  border-radius:5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left:55px;
+  cursor:pointer;
+}
+@media screen and (min-width: 900px) and (max-width: 1120px) {
+  .login {
+  width: 456px;
+  height: 396px;
+  padding:10px;
+  border:0px solid;
+  border-radius:7px;
+  background-color: white;
+  box-shadow: 1px 1px 5px #c4c4c4;
+  /*margin: 20% auto;*/
+  margin-top: -320px;
+  margin-left: 40%;
+  cursor:pointer;
+  /* margin-top: 20px; */
+}
+.logo{
+  margin-top: 150px;
+  margin-left: 5%;
+  width: 300px;
+}
+}
+ @media screen and (min-width: 720px) and (max-width: 899px) {
+  .login {
+  width: 456px;
+  height: 396px;
+  padding:10px;
+  border:0px solid;
+  border-radius:7px;
+  background-color: white;
+  box-shadow: 1px 1px 5px #c4c4c4;
+  /*margin: 20% auto;*/
+  /* margin-top: 20px;  */
+  margin-left: 20%;
+  cursor:pointer;
+}
+.logo{
+  margin-top: 150px;
+  margin-left: 5%;
+  width: 300px;
+  opacity:0;
+}
+}
+
+ @media screen and (min-width: 425px) and (max-width: 720px) {
+  .title{
+  font-size: 18px;
+  margin-left: 65px;
+}
+  .login {
+  width: 300px;
+  height: 396px;
+  padding:10px;
+  border:0px solid;
+  border-radius:7px;
+  background-color: white;
+  box-shadow: 1px 1px 5px #c4c4c4;
+
+  margin-left: 20%;
+}
+.logo{
+  margin-top: 150px;
+  margin-left: 5%;
+  width: 300px;
+  opacity:0;
+}
+
+#inputbox1{
+  width: 250px;
+  height: 53px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 20px ;
+}
+#inputbox2{
+  width: 250px;
+  height: 53px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 20px ;
+}
+#Login{
+  width: 250px;
+  height: 53px;
+  background-color: rgb(80,130,241);
+  border:0px solid;
+  border-radius:5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left:20px;
+  cursor:pointer;
+}
+
+#Register{
+  width: 250px;
+  height: 53px;
+  background-color: rgb(95,170,63);
+  border:0px solid;
+  border-radius:5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left:20px;
+  cursor:pointer;
+}
+}
+@media screen and (min-width: 0px) and (max-width: 425px) {
+  .title{
+  font-size: 18px;
+  margin-left: 65px;
+}
+  .login {
+  width: 300px;
+  height: 396px;
+  padding:10px;
+  border:0px solid;
+  border-radius:7px;
+  background-color: white;
+  box-shadow: 1px 1px 5px #c4c4c4;
+  /*margin: 20% auto;*/
+  /* margin-top: 20px;  */
+  margin-left: 5%;
+}
+.logo{
+  margin-top: 150px;
+  margin-left: 5%;
+  width: 300px;
+  opacity:0;
+}
+
+#inputbox1{
+  width: 250px;
+  height: 53px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 20px ;
+}
+#inputbox2{
+  width: 250px;
+  height: 53px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 20px ;
+}
+#Login{
+  width: 250px;
+  height: 53px;
+  background-color: rgb(80,130,241);
+  border:0px solid;
+  border-radius:5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left:20px;
+  cursor:pointer;
+}
+
+#Register{
+  width: 250px;
+  height: 53px;
+  background-color: rgb(95,170,63);
+  border:0px  solid;
+  border-radius:5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left:20px;
+  cursor:pointer;
+}
+}
+
+</style>
+
