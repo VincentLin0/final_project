@@ -27,7 +27,6 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 );
     }
 
-
     //允许图片访问路径
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

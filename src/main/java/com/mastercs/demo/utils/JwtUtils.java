@@ -122,7 +122,6 @@ public class JwtUtils {
                 if (EnumRole.ROLE_USER.equals(role.getName())) {
                     log.info("当前的角色是：" + role.getName());
                     log.error("普通用户不能访问");
-
                     //        throw  new Exception("错误");
                     break;
                 }
@@ -133,7 +132,12 @@ public class JwtUtils {
             //        throw  new Exception("错误");
         }
         System.out.println(request);
+    }
 
+    public static String getCurrentUsername(String token)
+    {
+        Claims claims = verifyJwt(token);
+        return (String) claims.get("username");
     }
 
 

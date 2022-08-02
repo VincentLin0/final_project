@@ -18,6 +18,8 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import static java.awt.SystemColor.window;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/users")
@@ -49,7 +51,7 @@ public class AuthController {
   @PostMapping("/login")
   public Result<?> authenticateUser(@Valid @RequestBody LoginDto loginRequest, HttpServletRequest request) {
 
-    JwtUtils.isAdmin(request);
+    //JwtUtils.isAdmin(request);
 
     User userInfo = userRepository.findUserByUsername(loginRequest.getUsername());
     if(userInfo != null){
@@ -61,7 +63,7 @@ public class AuthController {
         map.put("id",userInfo.getId());
         map.put("username",userInfo.getUsername());
         map.put("email",userInfo.getEmail());
-        map.put("userQuestion",userInfo.getUserQuestion());
+        //map.put("userQuestion",userInfo.getUserQuestion());
         map.put("roles",userInfo.getRoles());
         map.put("token",token);
         return Result.success(map);
@@ -96,18 +98,16 @@ public class AuthController {
     Role role = roleRepository.findByName(EnumRole.ROLE_USER);
     roles.add(role);
     user.setRoles(roles);
-//    user.setRoles(Collections.singleton(role));
     userRepository.save(user);
 
     return Result.success("signup success");
   }
-/*
-  @PostMapping("/logout")
-  public ResponseEntity<?> logoutUser() {
-    ResponseCookie cookie = JwtUtils.getCleanJwtCookie();
-    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
-        .body("You've been signed out!");
+
+  @GetMapping("/hehe")
+  public Result<?> testUser()
+  {
+    return Result.success();
   }
-*/
+
 
 }

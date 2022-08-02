@@ -1,18 +1,26 @@
 package com.mastercs.demo.controller;
 
+import com.mastercs.demo.bean.*;
+import com.mastercs.demo.config.Result;
+import com.mastercs.demo.payload.QuestionResponse;
+import com.mastercs.demo.payload.QuizDto;
+import com.mastercs.demo.payload.QuizResponse;
 import com.mastercs.demo.repository.OptionRepository;
 import com.mastercs.demo.repository.QuestionRepository;
 import com.mastercs.demo.repository.UserQuestionRepository;
 import com.mastercs.demo.repository.UserRepository;
+import com.mastercs.demo.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/users/quiz")
-//@PreAuthorize("hasRole('USER')")
 public class UserController {
     @Autowired
     UserRepository userRepository;
@@ -28,24 +36,27 @@ public class UserController {
     @Autowired
     QuestionRepository questionRepository;
 
-/*
+
     @PostMapping
-    public ResponseEntity adminAccess(@RequestParam Long id, @RequestBody QuizDto quizRequest, @AuthenticationPrincipal SpringUser springUser) {
+    public Result<?> userAccess(@RequestParam Long id, @RequestBody QuizDto quizRequest, HttpServletRequest request) {
         Question question = questionRepository.findQuestionById(id);
         if(question == null)
         {
-            return ResponseEntity.badRequest().body("Question does not exist!");
+            return Result.error("Question does not exist!");
         }
 
         String optionName = quizRequest.getOption();
         Options option = optionRepository.findOptionsByOptionTitleAndQuestion(optionName,question);
         if (option == null)
         {
-            return ResponseEntity.badRequest().body("Option does not exist!");
+            return Result.error("Option does not exist!");
         }
 
+        String token = request.getHeader("token");
+        String username = JwtUtils.getCurrentUsername(token);
+
         //add to UserQuestion table
-        User user = userRepository.findUserByUsername(springUser.getUsername());
+        User user = userRepository.findUserByUsername(username);
         UserQuestion userQuestion = new UserQuestion();
         userQuestion.setUser(user);
         userQuestion.setQuestion(question);
@@ -59,19 +70,19 @@ public class UserController {
 
         if (userQuestion.getName() == EnumOption.OPTIONS_WRONG)
         {
-            return ResponseEntity.ok(new QuizResponse(springUser.getUsername(),correctAnswer,false));
+            return Result.success(new QuizResponse(username,correctAnswer,false));
         }
-        return ResponseEntity.ok(new QuizResponse(springUser.getUsername(),correctAnswer,true));
+        return Result.success(new QuizResponse(username,correctAnswer,true));
     }
 
     @PostMapping("/question")
-    public ResponseEntity getQuestion(@RequestBody QuizDto quizDto)
+    public Result<?> getQuestion(@RequestBody QuizDto quizDto)
     {
         Long id = quizDto.getId();
         Question question = questionRepository.findQuestionById(id);
         if (question == null)
         {
-            return ResponseEntity.badRequest().body("Question does not exist");
+            return Result.error("Question does not exist");
         }
 
         List<Options> options = optionRepository.findOptionsByQuestion(question);
@@ -81,12 +92,12 @@ public class UserController {
             optionsList.add(n.getOptionTitle());
         }
 
-        return ResponseEntity.ok().body(new QuestionResponse(optionsList,question.getQuestionTitle()));
+        return Result.success(new QuestionResponse(optionsList,question.getQuestionTitle()));
     }
 
 
     @GetMapping("/list-of-quiz")
-    public ResponseEntity showQuizList()
+    public Result<?> showQuizList()
     {
         List<Question> questionList = quizRepository.findAll();
         List<String> questionTitleList = new ArrayList<>();
@@ -95,22 +106,23 @@ public class UserController {
         {
             questionTitleList.add(question.getQuestionTitle());
         }
-        return ResponseEntity.ok(questionTitleList);
+        return Result.success(questionTitleList);
     }
 
     @Transactional
     @GetMapping("/result")
-    public ResponseEntity getQuizResult(@AuthenticationPrincipal SpringUser springUser)
+    public Result<?> getQuizResult(HttpServletRequest request)
     {
-        Long userid = springUser.getId();
-        User user = userRepository.findUserById(userid);
+        String token = request.getHeader("token");
+        String username = JwtUtils.getCurrentUsername(token);
+        User user = userRepository.findUserByUsername(username);
 
         List<UserQuestion> allUserQuestionList = userQuestionRepository.findUserQuestionsByUser(user);
         List<UserQuestion> userQuestionList = userQuestionRepository.findUserQuestionsByUserAndName(user,EnumOption.OPTIONS_CORRECT);
 
         if (allUserQuestionList.size() == 0)
         {
-            return ResponseEntity.badRequest().body("The user haven't take the quiz yet");
+            return Result.error("The user haven't take the quiz yet");
         }
 
         int allQuestion = allUserQuestionList.size();
@@ -119,8 +131,8 @@ public class UserController {
         int result = correctQuestion*100/allQuestion;
         userQuestionRepository.deleteAllByUser(user);
 
-        return ResponseEntity.ok("You got " + result + " out of 100");
+        return Result.success("You got " + result + " out of 100");
     }
-*/
+
 
 }
