@@ -1,7 +1,7 @@
 <template lang="">
   <div class = "box">
     <HeadBar></HeadBar>
-	<searchResult></searchResult>
+	<searchResult class="body"></searchResult>
     <BottomBar></BottomBar>
   </div>
 </template>
@@ -26,6 +26,8 @@ export default {
 </script>
  
 <style>
-
+.body{
+  height: 720px;
+}
 </style>
 

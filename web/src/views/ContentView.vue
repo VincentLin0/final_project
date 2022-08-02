@@ -2,7 +2,7 @@
   <div id="app">
     <HeadBar></HeadBar>
     <ContentBox></ContentBox>
-    <BottomBar></BottomBar>
+    <BottomBar class="bottom"></BottomBar>
   </div>
 </template>
 
@@ -27,6 +27,10 @@ export default {
 
 <style>
 #app {
-
 }
+.bottom{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 </style>

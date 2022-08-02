@@ -45,7 +45,7 @@
 import axios from 'axios'
 
 const request = axios.create({
-	baseURL: 'http://localhost:8888',  // 注意！！ 这里是全局统一加上了 后端接口前缀 前缀，后端必须进行跨域配置！
+	baseURL: 'http://localhost:8080',  // 注意！！ 这里是全局统一加上了 后端接口前缀 前缀，后端必须进行跨域配置！
     timeout: 50000000
 })
 
@@ -54,7 +54,7 @@ const request = axios.create({
 // 比如统一加token，对请求参数统一加密
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
-    // config.headers['Authorization'] = localStorage.getItem("Authorization");
+    config.headers['Authorization'] = localStorage.getItem("Authorization");
     // config.headers['Set-Cookie'] = localStorage.getItem("Set-Cookie");
     config.headers['token'] = localStorage.getItem("token");  // 设置请求头
     return config

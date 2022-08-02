@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <HeadBar></HeadBar>
-    <SelfTest></SelfTest>
-    <BottomBar></BottomBar>
+    <SelfTest class="body"></SelfTest>
+    <BottomBar class="bottom"></BottomBar>
   </div>
 </template>
 
@@ -28,4 +28,13 @@ export default {
 #app {
 
 }
+.body{
+  height: 420px;
+}
+.bottom{
+  width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+  }
 </style>
