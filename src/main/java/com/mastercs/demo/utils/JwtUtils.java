@@ -107,7 +107,7 @@ public class JwtUtils {
      * 判断当前用户是否是管理员
      * @param request
      */
-    public static void isAdmin(HttpServletRequest request) {
+    public static boolean isAdmin(HttpServletRequest request) {
         String token = request.getHeader("token");
         Claims claims = verifyJwt(token);
 
@@ -117,21 +117,20 @@ public class JwtUtils {
             });
 
             for (Role role : roleList) {
-                String roles = "a.b.c";
-                //普通用户
-                if (EnumRole.ROLE_USER.equals(role.getName())) {
-                    log.info("当前的角色是：" + role.getName());
-                    log.error("普通用户不能访问");
+                //admin
+                if (EnumRole.ROLE_ADMIN.equals(role.getName())) {
+                    log.info("Current user is :" + role.getName());
+//                    log.error("普通用户不能访问");
                     //        throw  new Exception("错误");
-                    break;
+                    return true;
                 }
-                System.out.println("当前的角色是：" + role.getName());
             }
+            log.error("No permission");
         }else{
-            log.error("没有找到当前用户");
+            log.error("User not found");
             //        throw  new Exception("错误");
         }
-        System.out.println(request);
+        return false;
     }
 
     public static String getCurrentUsername(String token)

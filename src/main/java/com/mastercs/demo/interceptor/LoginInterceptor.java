@@ -41,18 +41,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        System.out.println(token);
         log.info("登录校验开始，token：{}", token);
         if (token == null || token.isEmpty()) {
-            log.info("token为空，请求被拦截");
+//            log.info("token为空，请求被拦截");
+            log.error("Empty token, the HTTP request is intercepted");
             return false;
         }
 
         Claims claims = JwtUtils.verifyJwt(token);
 
         if (claims == null) {
-            log.warn("token无效，请求被拦截");
+            log.warn("Invalid token, the HTTP request is intercepted");
             return false;
         } else {
             Integer userId = (Integer) claims.get("userId");
-            log.info("已登录：用户id[{}]", userId);
+            log.info("User logged in, user id[{}]", userId);
             return true;
         }
     }

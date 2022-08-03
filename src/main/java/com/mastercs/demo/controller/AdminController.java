@@ -3,6 +3,7 @@ package com.mastercs.demo.controller;
 import com.mastercs.demo.bean.EnumOption;
 import com.mastercs.demo.bean.Options;
 import com.mastercs.demo.bean.Question;
+import com.mastercs.demo.config.Result;
 import com.mastercs.demo.payload.AdminQuizDto;
 import com.mastercs.demo.repository.OptionRepository;
 import com.mastercs.demo.repository.QuestionRepository;
@@ -36,8 +37,13 @@ public class AdminController {
     }
 
     @PostMapping("/add-question")
-    public ResponseEntity adminAddQuestions(@RequestBody AdminQuizDto adminQuizDto)
+    public Result<?> adminAddQuestions(@RequestBody AdminQuizDto adminQuizDto)
     {
+        if (questionRepository.findQuestionByQuestionTitle(adminQuizDto.getQuestion())!= null)
+        {
+            return Result.error("Question already exists!");
+        }
+
         Question question = new Question();
         question.setQuestionTitle(adminQuizDto.getQuestion());
         questionRepository.save(question);
@@ -56,7 +62,7 @@ public class AdminController {
         correctOption.setOption(EnumOption.OPTIONS_CORRECT);
         optionRepository.save(correctOption);
 
-        return ResponseEntity.ok("Added new question!");
+        return Result.success("Added new question!");
     }
 
 //    @PostMapping("/modify-questions")
@@ -75,12 +81,12 @@ public class AdminController {
 
     @Transactional
     @PostMapping("/delete-question")
-    public ResponseEntity adminDeleteQuestions(@RequestBody AdminQuizDto adminQuizDto)
+    public Result<?> adminDeleteQuestions(@RequestBody AdminQuizDto adminQuizDto)
     {
         Question question = questionRepository.findQuestionByQuestionTitle(adminQuizDto.getQuestion());
         if (question == null)
         {
-            return ResponseEntity.badRequest().body("The question does not exist");
+            return Result.error("The question does not exist");
         }
 
         optionRepository.deleteOptionsByQuestion(question);
@@ -89,6 +95,6 @@ public class AdminController {
         {
             userQuestionRepository.deleteAllByQuestion(question);
         }
-        return ResponseEntity.ok("Deleted a question!");
+        return Result.success("Deleted a question!");
     }
 }

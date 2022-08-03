@@ -34,19 +34,6 @@ public class AuthController {
   @Autowired
   RoleRepository roleRepository;
 
-//  @Autowired
-//  QuestionRepository quizRepository;
-//
-//  @Autowired
-//  OptionRepository optionRepository;
-//
-//  @Autowired
-//  UserQuestionRepository userQuestionRepository;
-
-/*
-  @Autowired
-  JwtUtils jwtUtils;*/
-
 
   @PostMapping("/login")
   public Result<?> authenticateUser(@Valid @RequestBody LoginDto loginRequest, HttpServletRequest request) {
@@ -101,12 +88,6 @@ public class AuthController {
     userRepository.save(user);
 
     return Result.success("signup success");
-  }
-
-  @GetMapping("/hehe")
-  public Result<?> testUser()
-  {
-    return Result.success();
   }
 
 

@@ -3,6 +3,8 @@ package com.mastercs.demo.aspect;
 
 
 import com.mastercs.demo.interceptor.LoginInterceptor;
+import com.mastercs.demo.interceptor.PermissionInterceptor;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,6 +18,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     @Resource
     LoginInterceptor loginInterceptor;
 
+    @Resource
+    PermissionInterceptor permissionInterceptor;
+
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
@@ -25,6 +30,8 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/users/login",
                         "/users/signup"
                 );
+        registry.addInterceptor(permissionInterceptor)
+                .addPathPatterns("/users/admin/quiz");
     }
 
     //允许图片访问路径
