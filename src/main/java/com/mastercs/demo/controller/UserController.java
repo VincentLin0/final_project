@@ -100,11 +100,11 @@ public class UserController {
     public Result<?> showQuizList()
     {
         List<Question> questionList = quizRepository.findAll();
-        List<String> questionTitleList = new ArrayList<>();
+        List<Long> questionTitleList = new ArrayList<>();
 
         for (Question question:questionList)
         {
-            questionTitleList.add(question.getQuestionTitle());
+            questionTitleList.add(question.getId());
         }
         return Result.success(questionTitleList);
     }
