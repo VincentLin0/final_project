@@ -27,7 +27,7 @@ public class JwtUtils {
     /**
      * token 过期时间, 单位: 秒. 这个值表示 30 天
      */
-    private static final long TOKEN_EXPIRED_TIME = 30 * 24 * 60 * 60;
+    private static final long TOKEN_EXPIRED_TIME = 86400000;
 
     public static final String jwtId = "tokenId";
 
