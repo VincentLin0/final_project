@@ -19,7 +19,7 @@
             </div>
             <div class="selections">
                 <span @click="search" class="sl">Search</span>
-                <span href="#" class="st">Self-test</span>
+                <span @click="self_test" class="st">Self-test</span>
                 <span href="#" class="tt">Tutorial</span>
             </div>
 
@@ -46,6 +46,9 @@ export default {
     methods:{
         search(){
           this.$router.push('/search');
+        },
+        self_test(){
+        this.$router.push('/test');
         }
     }
 }
