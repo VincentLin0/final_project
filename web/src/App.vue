@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-cloak>
     <router-view></router-view>
   </div>
 </template>
@@ -16,5 +16,7 @@ export default{
 body {
   margin: 0;
 }
-
+[v-cloak] {
+  display: none !important;
+}
 </style>

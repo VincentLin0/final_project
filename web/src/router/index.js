@@ -8,6 +8,10 @@ import SearchResult from '../views/SearchResult.vue'
 import LogOnView from '../views/LogOnView'
 import UploadContentView from '../views/UploadContentView.vue'
 import SeftTestView from '../views/SeftTestView.vue'
+import BackStageView_CM from '../views/BackStageView_CM.vue'
+import BackStageView_AC from '../views/BackStageView_AC.vue'
+import BackStageView_TM from '../views/BackStageView_TM.vue'
+import BackStageView_AQ from '../views/BackStageView_AQ.vue'
 
 Vue.use(VueRouter)
 
@@ -62,7 +66,27 @@ const routes = [
     path: '/test',
     name: 'SeftTest',
     component: SeftTestView
-  }
+  },
+  {
+    path: '/backStage',
+    name: 'BackStage',
+    component: BackStageView_CM
+  },
+  {
+    path: '/backStage/upload',
+    name: 'BackStage',
+    component: BackStageView_AC
+  },
+  {
+    path: '/backStage/testManagement',
+    name: 'testManagement',
+    component: BackStageView_TM
+  },
+  {
+    path: '/backStage/testManagement/uploadTest',
+    name: 'testManagement',
+    component: BackStageView_AQ
+  },
   // {
   //   path: '/login',
   //   name: 'login',
