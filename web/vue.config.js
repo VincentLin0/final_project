@@ -2,11 +2,16 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true
 })
+<<<<<<< HEAD
 module.exports = {
   devServer: {
     disableHostCheck: true
   }
 }
+=======
+
+
+>>>>>>> fe5a0c82073182e557c201054b2faf4ffaa815ef
 // 跨域配置
 /*module.exports = {
   devServer: {                //记住，别写错了devServer//设置本地默认端口  选填
@@ -22,4 +27,3 @@ module.exports = {
       }
   }
 }*/
-

@@ -5,6 +5,7 @@ import com.mastercs.demo.bean.Options;
 import com.mastercs.demo.bean.Question;
 import com.mastercs.demo.config.Result;
 import com.mastercs.demo.payload.AdminQuizDto;
+import com.mastercs.demo.payload.AllQuizResponse;
 import com.mastercs.demo.repository.OptionRepository;
 import com.mastercs.demo.repository.QuestionRepository;
 import com.mastercs.demo.repository.UserQuestionRepository;
@@ -103,7 +104,6 @@ public class AdminController {
     @GetMapping("/all-quiz")
     public Result<?> showQuizList()
     {
-        HashMap<String, List<Options>> map = new HashMap<>();
         List<Question> questionList = questionRepository.findAll();
 
         if (questionList.size() == 0)
@@ -111,12 +111,24 @@ public class AdminController {
             return Result.error("There is no question!");
         }
 
+        List<AllQuizResponse> allQuizResponseList = new ArrayList<>();
         for (Question question : questionList)
         {
             List<Options> optionsList = optionRepository.findOptionsByQuestion(question);
-            map.put(question.getQuestionTitle(),optionsList);
+            List<String> optionTitleList = new ArrayList<>();
+            for (Options option : optionsList)
+            {
+                String optionTitle = option.getOptionTitle();
+                optionTitleList.add(optionTitle);
+            }
+            Options answerOption= optionRepository.findOptionsByNameAndQuestion(EnumOption.OPTIONS_CORRECT,question);
+            String answer = answerOption.getOptionTitle();
+            Long id = question.getId();
+            String questionTitle = question.getQuestionTitle();
+            AllQuizResponse quizResponse = new AllQuizResponse(id, questionTitle, optionTitleList,answer);
+            allQuizResponseList.add(quizResponse);
         }
 
-        return Result.success(map);
+        return Result.success(allQuizResponseList);
     }
 }
