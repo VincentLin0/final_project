@@ -16,8 +16,8 @@ public class Question {
     @Size(max = 120)
     private String questionTitle;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
-    private List<Options> options;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+//    private List<Options> options;
 
     public Long getId() {
         return id;
@@ -37,13 +37,13 @@ public class Question {
         this.questionTitle = questionTitle;
     }
 
-    public List<Options> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<Options> options) {
-        this.options = options;
-    }
+//    public List<Options> getOptions() {
+//        return options;
+//    }
+//
+//    public void setOptions(List<Options> options) {
+//        this.options = options;
+//    }
 
 }
 

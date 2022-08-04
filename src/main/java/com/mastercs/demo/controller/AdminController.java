@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -96,5 +98,25 @@ public class AdminController {
             userQuestionRepository.deleteAllByQuestion(question);
         }
         return Result.success("Deleted a question!");
+    }
+
+    @GetMapping("/all-quiz")
+    public Result<?> showQuizList()
+    {
+        HashMap<String, List<Options>> map = new HashMap<>();
+        List<Question> questionList = questionRepository.findAll();
+
+        if (questionList.size() == 0)
+        {
+            return Result.error("There is no question!");
+        }
+
+        for (Question question : questionList)
+        {
+            List<Options> optionsList = optionRepository.findOptionsByQuestion(question);
+            map.put(question.getQuestionTitle(),optionsList);
+        }
+
+        return Result.success(map);
     }
 }
