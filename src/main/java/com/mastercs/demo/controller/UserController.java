@@ -134,5 +134,20 @@ public class UserController {
         return Result.success("You got " + result + " out of 100");
     }
 
+    @Transactional
+    @PostMapping("/clear-data")
+    public Result<?> clearUserData(HttpServletRequest request)
+    {
+        String token = request.getHeader("token");
+        String username = JwtUtils.getCurrentUsername(token);
+        User user = userRepository.findUserByUsername(username);
+
+        if (userQuestionRepository == null)
+        {
+            return Result.error("There is no user_question data to delete");
+        }
+        userQuestionRepository.deleteAllByUser(user);
+        return Result.success("Deleted user_question data successfully!");
+    }
 
 }
