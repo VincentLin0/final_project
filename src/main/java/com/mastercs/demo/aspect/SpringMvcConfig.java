@@ -28,7 +28,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 //允许直接访问的接口
                 .excludePathPatterns(
                         "/users/login",
-                        "/users/signup"
+                        "/users/signup",
+                        "/view",
+                        "/uploads"
                 );
         registry.addInterceptor(permissionInterceptor)
                 .addPathPatterns("/users/admin/quiz");

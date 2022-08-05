@@ -109,7 +109,7 @@ const router = new VueRouter({
 //     next();
 //   } else {
 //     let token = localStorage.getItem('token');
- 
+
 //     if (token === null || token === '') {
 //       next('/login');
 //     } else {
@@ -117,7 +117,7 @@ const router = new VueRouter({
 //     }
 //   }
 // });
- 
+
 
 
 export default router;
