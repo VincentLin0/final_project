@@ -25,7 +25,10 @@ export default {
       isShow : false,
       isShow1 : false,
       admin:{
-        roles:[],
+        roles:{
+          name :''
+        },
+        
       },
       }
     },
@@ -54,13 +57,19 @@ export default {
     }
     },
         changeIsShow1(){
-
+          
           let adminStr = localStorage.getItem('userInfo')
-          let admin = JSON.parse(adminStr)
-          console.log(admin.roles[1])
-          if( 'ROLE_ADMIN' == admin.roles[0].name || 'ROLE_ADMIN' == admin.roles[1].name){
-            console.log("admin")
+          this.admin = JSON.parse(adminStr)
+          if(this.admin != null){
+          console.log(this.admin.roles[0].name)
+          if( this.admin.roles[0]!= null &&'ROLE_ADMIN' == this.admin.roles[0].name ){
+            // console.log("admin")
             this.isShow1 = true
+          }
+          if(this.admin.roles[1]!= null && 'ROLE_ADMIN' == this.admin.roles[1].name){
+            // console.log("admin")
+            this.isShow1 = true
+          }
           }
           // console.log(admin.roles[0])
           // if(admin.hasOwnProperty('ROLE_ADMIN')){
@@ -75,6 +84,7 @@ export default {
     //   this.isShow1 = true;
     // }
     },
+        
     logout(){
       //清空本地缓存，跳转首页
 

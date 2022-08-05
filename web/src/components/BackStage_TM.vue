@@ -6,11 +6,11 @@
 
       <el-main>
         <el-table :data="tableData">
-          <el-table-column prop="questionId" label="question id" width="150">
+          <el-table-column prop="questionId" label="id" width="80">
           </el-table-column>
-          <el-table-column prop="question" label="question" width="550">
+          <el-table-column prop="question" label="question" width="450">
           </el-table-column>
-          <el-table-column prop="answer" label="answer" width="250">
+          <el-table-column prop="answer" label="answer" width="180">
           </el-table-column>
           <el-table-column >
             <template slot-scope="scope">
