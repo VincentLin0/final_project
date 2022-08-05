@@ -31,7 +31,7 @@ export default {
     },
   methods:{
     backStage(){
-      this.$router.push('/backStage');
+      this.$router.push('/backStage/testManagement');
     },
     home(){
       this.$router.push('/');
