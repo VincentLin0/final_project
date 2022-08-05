@@ -1,0 +1,23 @@
+server:
+  ip: localhost
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://sxb1plzcpnl473169.prod.sxb1.secureserver.net:3306/users?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: minyueyou
+  jpa:
+    hibernate:
+      ddl-auto: none
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+    tomcat:
+      max-swallow-size: 1000MB #最重要的是这行
+files:
+  upload:
+    path: C:\Users\15626\Documents\Summer Project 2022\saveAllFile1
+
+
