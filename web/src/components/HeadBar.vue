@@ -7,7 +7,9 @@
       <span v-if = "isShow == false" @click="login"  class="nav3" >Log in</span> 
 			<span v-if = "isShow == false" @click="signup"  class="nav3" >Sign up</span>
       <span v-if = "isShow == true" @click="login"  class="nav3" >My collection</span>
-      <span v-if = "isShow == true" @click="logout"  class="nav3" >log out</span>
+      <span v-if = "isShow1 == true" @click="backStage"  class="nav3" >Management</span>
+      <span v-if = "isShow == true" @click="logout"  class="nav3" >Log out</span>
+      
 				</span>
   </div>
 </template>
@@ -17,7 +19,20 @@ import "../css/font.css";
 
 export default {
   name: 'HeadBar',
+    data:function(){
+      return{
+        userInfo:[],
+      isShow : false,
+      isShow1 : false,
+      admin:{
+        roles:[],
+      },
+      }
+    },
   methods:{
+    backStage(){
+      this.$router.push('/backStage');
+    },
     home(){
       this.$router.push('/');
     },
@@ -37,6 +52,28 @@ export default {
     } else {
       this.isShow = true;
     }
+    },
+        changeIsShow1(){
+
+          let adminStr = localStorage.getItem('userInfo')
+          let admin = JSON.parse(adminStr)
+          console.log(admin.roles[1])
+          if( 'ROLE_ADMIN' == admin.roles[0].name || 'ROLE_ADMIN' == admin.roles[1].name){
+            console.log("admin")
+            this.isShow1 = true
+          }
+          // console.log(admin.roles[0])
+          // if(admin.hasOwnProperty('ROLE_ADMIN')){
+
+          // }
+    // let token = localStorage.getItem('token')||'';
+    // console.log(token,"-------------------")
+ 
+    // if (token === null || token === '') {
+    //   this.isShow1 = false;
+    // } else {
+    //   this.isShow1 = true;
+    // }
     },
     logout(){
       //清空本地缓存，跳转首页
@@ -63,13 +100,9 @@ export default {
     created(){
         this.userInfo = localStorage.getItem("userInfo") !==null ?JSON.parse(localStorage.getItem("userInfo")):[]
         this.changeIsShow()
+        this.changeIsShow1()
     },
-    data:function(){
-      return{
-        userInfo:[],
-      isShow : false
-      }
-    },
+
     }
   
 

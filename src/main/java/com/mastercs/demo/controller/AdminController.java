@@ -82,7 +82,7 @@ public class AdminController {
 //        return ResponseEntity.ok("Question modified successfully!");
 //    }
 
-    @Transactional
+    @Transactional()
     @PostMapping("/delete-question")
     public Result<?> adminDeleteQuestions(@RequestBody AdminQuizDto adminQuizDto)
     {
@@ -131,4 +131,7 @@ public class AdminController {
 
         return Result.success(allQuizResponseList);
     }
+
+
+
 }
