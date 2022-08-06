@@ -1,4 +1,4 @@
-package com.mastercs.demo.controller;
+package com.mastercs.demo.exception;
 
 import com.mastercs.demo.config.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.nio.file.AccessDeniedException;
+import java.security.Signature;
+import java.security.SignatureException;
 
 @Slf4j
 @RestControllerAdvice
@@ -41,7 +43,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
     public Result handler(RuntimeException e) {
-        log.error("运行时异常：----------------{}", e);
+        log.error("运行时异常：----------------{}", e.getMessage());
         return Result.error(e.getMessage());
     }
 }
