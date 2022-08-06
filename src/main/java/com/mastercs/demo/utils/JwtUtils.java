@@ -5,15 +5,13 @@ import com.alibaba.fastjson.TypeReference;
 import com.mastercs.demo.bean.EnumRole;
 import com.mastercs.demo.bean.Role;
 import com.mastercs.demo.bean.User;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
+import java.nio.file.AccessDeniedException;
 import java.util.*;
 
 /**
@@ -71,11 +69,23 @@ public class JwtUtils {
             claims = Jwts.parser()  //得到DefaultJwtParser
                     .setSigningKey(key)         //设置签名的秘钥
                     .parseClaimsJws(token).getBody();
-        } catch (Exception e) {
-            claims = null;
-        }//设置需要解析的jwt
-        return claims;
-
+            return claims;
+        } catch (SignatureException e) {
+            log.error("Invalid JWT signature: {}", e.getMessage());
+            throw new RuntimeException("Invalid JWT signature");
+        } catch (MalformedJwtException e) {
+            log.error("Invalid JWT token: {}", e.getMessage());
+            throw new RuntimeException("Invalid JWT token");
+        } catch (ExpiredJwtException e) {
+            log.error("JWT token is expired: {}", e.getMessage());
+            throw new RuntimeException("JWT token is expired");
+        } catch (UnsupportedJwtException e) {
+            log.error("JWT token is unsupported: {}", e.getMessage());
+            throw new RuntimeException("JWT token is unsupported");
+        } catch (IllegalArgumentException e) {
+            log.error("JWT claims string is empty: {}", e.getMessage());
+            throw new RuntimeException("JWT claims string is empty");
+        }
     }
 
     /**
@@ -120,8 +130,6 @@ public class JwtUtils {
                 //admin
                 if (EnumRole.ROLE_ADMIN.equals(role.getName())) {
                     log.info("Current user is :" + role.getName());
-//                    log.error("普通用户不能访问");
-                    //        throw  new Exception("错误");
                     return true;
                 }
             }

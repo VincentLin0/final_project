@@ -33,7 +33,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/uploads"
                 );
         registry.addInterceptor(permissionInterceptor)
-                .addPathPatterns("/users/admin/quiz");
+                .addPathPatterns("/users/admin/quiz/**");
     }
 
     //允许图片访问路径
