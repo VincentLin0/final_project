@@ -1,6 +1,8 @@
 <template lang="">
   <div class = "box">
     <HeadBar></HeadBar>
+    <el-container>
+      <el-main>
     <div>
       <img  src="../assets/img/logo1.svg"  alt="cannot  show"  class="logo">
     </div>
@@ -27,6 +29,8 @@
       </div>
       
     </div>
+    </el-main>
+    </el-container>
   <div id="app">
     <BottomBar></BottomBar>
   </div>

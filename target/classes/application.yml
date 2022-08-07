@@ -8,6 +8,12 @@ spring:
     url: jdbc:mysql://sxb1plzcpnl473169.prod.sxb1.secureserver.net:3306/users?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: minyueyou
   jpa:
+    show-sql: true #打印执行的sql语句，false则不打印sql
+    properties:
+      hibernate:
+        ddl-auto: none
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      open-in-view: true
     hibernate:
       ddl-auto: none
   servlet:
@@ -18,6 +24,9 @@ spring:
       max-swallow-size: 1000MB #最重要的是这行
 files:
   upload:
-    path: C:\Users\15626\Documents\Summer Project 2022\saveAllFile1
+    #文件路径层级尽量少一些 最后一个斜杠必须加上，不然不会创建最后一个文件夹C:\Users\15626\Documents\SummerProject2022\saveAllFile1\
+    path: /www/wwwroot/saveAllFile/
+
+
 
 

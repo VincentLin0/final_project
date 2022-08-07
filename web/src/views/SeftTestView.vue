@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <HeadBar></HeadBar>
-    <SelfTest class="body"></SelfTest>
-    <BottomBar class="bottom"></BottomBar>
+
+  <HeadBar></HeadBar>
+  <SelfTest class="mainTest"></SelfTest>
+  <BottomBar></BottomBar>
+
+
   </div>
 </template>
 
@@ -28,7 +31,7 @@ export default {
 #app {
 
 }
-.body{
+.mainTest{
   height: 420px;
 }
 .bottom{

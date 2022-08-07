@@ -2,7 +2,7 @@ package com.mastercs.demo.interceptor;
 
 
 import com.mastercs.demo.utils.JwtUtils;
-import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -41,21 +41,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        System.out.println(token);
         log.info("登录校验开始，token：{}", token);
         if (token == null || token.isEmpty()) {
-//            log.info("token为空，请求被拦截");
             log.error("Empty token, the HTTP request is intercepted");
-            return false;
+            throw new IllegalArgumentException("Empty JWT token");
         }
 
         Claims claims = JwtUtils.verifyJwt(token);
-
         if (claims == null) {
             log.warn("Invalid token, the HTTP request is intercepted");
             return false;
-        } else {
-            Integer userId = (Integer) claims.get("userId");
-            log.info("User logged in, user id[{}]", userId);
-            return true;
         }
+        Integer userId = (Integer) claims.get("userId");
+        log.info("User logged in, user id[{}]", userId);
+        return true;
     }
 
     @Override

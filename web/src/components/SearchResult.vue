@@ -1,9 +1,10 @@
 <template>
 <div class="Box">
-    <div class="blank"></div>
+    
     <div class="BreadcrumbNavgation"><BreadcrumbNavgation></BreadcrumbNavgation> </div>
-	<div class="result-num">the following are {{this.$route.params.searchContent}} relevant results</div>
+	<div class="result-num">the following are {{this.$route.query.searchContent}} relevant results</div>
 {{searchContent}}
+
 	<ul class="results">
         <li
           class="result-content"
@@ -40,6 +41,7 @@
 <script>
 import request from '../utils/request'
 import BreadcrumbNavgation  from '../components/breadcrumbNavigation.vue'
+import { Loading } from 'element-ui'
 export default {
   name: 'searchResult',
   data () {
@@ -59,7 +61,7 @@ export default {
       search(){
         request.post("/result", {
             // 把 search 页面的 input 内容映射到 searchContent 变量中并发送给后端
-            searchContent: this.$route.params.searchContent// 通过 v-model 把 input 框输入的内容存进 searchContent 中
+            searchContent: this.$route.query.searchContent// 通过 v-model 把 input 框输入的内容存进 searchContent 中
           })
           // .then意思是指定回调函数
           .then((successResponse) => {
@@ -87,7 +89,9 @@ export default {
       },
   },
   created(){
+      let loadingInstance = Loading.service({ fullscreen: true });
       this.search() 
+      loadingInstance.close();
       }
 
 }
@@ -96,15 +100,12 @@ export default {
   
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.blank{
-  position: absolute;
-  height: 900px;
-}
+
 .box {
   /* position: relative; */
   width: 1088px;
   height: 1440px;
-  /* background-color: rgb(153, 238, 238); */
+
   margin-left: 150px;
 }
 .BreadcrumbNavgation{
@@ -115,7 +116,7 @@ export default {
   width: 60%;
   margin-left: 15%;
   list-style: none;
-  /* background-color: #bfc; */
+  min-height: 500px;
 }
 
 .result-num {
@@ -150,7 +151,7 @@ export default {
   top: 6px;
   width: 560px;
   height: 85px; */
-  /* background-color: aqua; */
+
 } 
 
 .description img {
@@ -169,7 +170,6 @@ export default {
   width: 416px;
   font-size: 18px;
   color: #333;
-  /* background-color: #315efb; */
 }
 
 .des-text2 {
@@ -186,7 +186,7 @@ export default {
       width: 60%;
     margin-left: 7%;
     list-style: none;
-  /* background-color: #bfc; */
+  
 }
 
     .result-num {
@@ -224,7 +224,6 @@ export default {
   position: relative;
   width: 1088px;
   height: 1440px;
-  /* background-color: rgb(153, 238, 238); */
   margin-left: 150px;
 }
 .BreadcrumbNavgation{
@@ -235,7 +234,6 @@ export default {
   width: 60%;
   margin-left: 5%;
   list-style: none;
-  /* background-color: #bfc; */
 }
 
 .result-num {
@@ -309,7 +307,7 @@ export default {
   position: relative;
   width: 1088px;
   height: 1440px;
-  /* background-color: rgb(153, 238, 238); */
+ 
   margin-left: 150px;
 }
 .BreadcrumbNavgation{
@@ -320,7 +318,7 @@ export default {
   width: 60%;
   margin-left: 15%;
   list-style: none;
-  /* background-color: #bfc; */
+
 }
 
 .result-num {
