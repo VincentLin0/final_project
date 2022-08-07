@@ -1,7 +1,7 @@
 <template>
 	<el-upload
 	class="upload-demo"
-	action="http://localhost:8080/uploads"
+	action="http://localhost:8082/uploads"
 	:on-preview="handlePreview"
 	:on-remove="handleRemove"
 	:file-list="fileList"

@@ -71,18 +71,25 @@ export default {
             this.searchResults = list
             console.log(this.searchResults)
             if (successResponse.length === 0) {
-              alert('error')
+              this.open3()
             }
           })
           // 指定发生错误时的回调函数
           .catch((failResponse) => {
             console.log(failResponse)
           })
-      }
+      },
+      open3() {
+        this.$message({
+          message: 'Sorry, this keyword was not found.',
+          type: 'warning'
+        });
+      },
   },
   created(){
       this.search() 
       }
+
 }
 
 </script>

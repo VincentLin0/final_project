@@ -104,19 +104,20 @@ const router = new VueRouter({
 })
 
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/login' || to.path === '/signup' || to.path === '/') {
-//     next();
-//   } else {
-//     let token = localStorage.getItem('token');
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' || to.path === '/signup' || to.path === '/' || to.path === '/search'|| to.name === 'result' || to.name === 'content') {
+                                                                                                  to.path === '/result/:searchContent'
+    next();
+  } else {
+    let token = localStorage.getItem('token');
  
-//     if (token === null || token === '') {
-//       next('/login');
-//     } else {
-//       next();
-//     }
-//   }
-// });
+    if (token === null || token === '') {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
  
 
 
