@@ -30,6 +30,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/users/login",
                         "/users/signup",
                         "/result",
+                        "/tutorial",
                         "/view",
                         "/uploads"
                 );

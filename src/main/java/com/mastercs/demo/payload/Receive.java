@@ -1,4 +1,4 @@
-package com.mastercs.demo.bean;
+package com.mastercs.demo.payload;
 
 
 
