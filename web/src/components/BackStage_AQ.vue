@@ -16,9 +16,11 @@
       <div class="option1"><el-input v-model="option2" clearable></el-input> </div>
       <div class="option">option C</div>
       <div class="option1"><el-input v-model="option3" clearable></el-input></div>
+      <div class="option">option D</div>
+      <div class="option1"><el-input v-model="option4" clearable></el-input></div>
       <div class="option">answer</div>
       <div class="option1"><el-input v-model="answer" clearable></el-input></div>    
-      <div class="upload"><el-button type="primary" @click="upload">upload</el-button></div>
+      <div class="upload" ><el-button type="primary" @click="upload">upload</el-button></div>
     </el-main>
   </el-container>
 </el-container>
@@ -44,6 +46,7 @@ import request from '@/utils/request';
           option1: '',
           option2: '',
           option3: '',
+          option4: '',
           answer: '',
         }
       },
@@ -52,7 +55,7 @@ import request from '@/utils/request';
         console.log(this.question)
         let question0 = this.question
         request.post("users/admin/quiz/add-question",{"question": question0,
-        "options":[this.option1,this.option2,this.option3],
+        "options":[this.option1,this.option2,this.option3, this.option4],
         "answer":this.answer})
          .then((successResponse) => {
             console.log("结果是"+successResponse.data) // 数组，所有符合条件的结果数组
@@ -64,6 +67,7 @@ import request from '@/utils/request';
                       this.option1= '',
                       this.option2= '',
                       this.option3= '',
+                      this.option4= '',
                       this.answer= '',
                     { action }}
                   });

@@ -1,13 +1,13 @@
 <template>
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
     <el-menu :default-openeds="['1', '2']">
-      <!-- <el-submenu index="1">
+      <el-submenu index="1">
         <template slot="title"><i class="el-icon-s-order"></i>Content management</template>
         <el-menu-item-group>
           <el-menu-item @click="toCM" index="1-1">Modify content</el-menu-item>
           <el-menu-item @click="toAC" index="1-2">Add content</el-menu-item>
         </el-menu-item-group>
-      </el-submenu> -->
+      </el-submenu>
       <el-submenu index="2">
         <template slot="title"><i class="el-icon-edit"></i>Test management</template>
         <el-menu-item-group>
