@@ -1,26 +1,30 @@
 <template lang="">
   <div class = "box">
     <HeadBar></HeadBar>
+        <el-container>
+      <el-main>
     <div>
       <img  src="../assets/img/logo1.svg"  alt="cannot  show"  class="logo">
     </div>
-    <div class="login" id="login">
+    <div class="login1">
       <h2 class = "title">Welcome to log in</h2>
-      <div class="input-wrap">
+      <div >
         <!-- <label for="male">Account number:</label> -->
-        <input id = "inputbox1" type="text" v-model="loginForm.username" placeholder="Account number"/>
+        <input class = "inputbox1" type="text" v-model="loginForm.username" placeholder="Account number"/>
         
       </div>
-      <div class="input-wrap">
+      <div >
         <!-- <label for="male">Password：</label> -->
-        <input id = "inputbox2" type="password" v-model="loginForm.password" placeholder="Password"/>
+        <input class = "inputbox2" type="password" v-model="loginForm.password" placeholder="Password"/>
       </div>
-      <div class="input-wrap">
+      <div>
         <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
         <button id= "Login" @click="login">Log in</button>&nbsp;&nbsp;
         <button id= "Register" @click="regist">Register</button>
       </div>
     </div>
+        </el-main>
+    </el-container>
   <div id="app">
     <BottomBar></BottomBar>
   </div>
@@ -163,7 +167,7 @@ export default {
   font-size: 24px;
   margin-left: 115px;
 }
-.login {
+.login1 {
   width: 456px;
   height: 396px;
   padding:10px;
@@ -181,9 +185,10 @@ export default {
   margin-top: 150px;
   margin-left: 12%;
   width: 300px;
+  
 }
 
-#inputbox1{
+.inputbox1{
   width: 364px;
   height: 53px;
   margin-top: 15px;
@@ -192,7 +197,7 @@ export default {
 
 
 }
-#inputbox2{
+.inputbox2{
   width: 364px;
   height: 53px;
   margin-top: 0px;
@@ -225,7 +230,7 @@ export default {
   cursor:pointer;
 }
 @media screen and (min-width: 900px) and (max-width: 1120px) {
-  .login {
+  .login1 {
   width: 456px;
   height: 396px;
   padding:10px;
@@ -246,7 +251,7 @@ export default {
 }
 }
  @media screen and (min-width: 720px) and (max-width: 899px) {
-  .login {
+  .login1 {
   width: 456px;
   height: 396px;
   padding:10px;
@@ -267,12 +272,12 @@ export default {
 }
 }
 
- @media screen and (min-width: 425px) and (max-width: 720px) {
+ @media screen and (min-width: 426px) and (max-width: 720px) {
   .title{
   font-size: 18px;
   margin-left: 65px;
 }
-  .login {
+  .login1 {
   width: 300px;
   height: 396px;
   padding:10px;
@@ -287,25 +292,25 @@ export default {
   margin-top: 150px;
   margin-left: 5%;
   width: 300px;
-  opacity:0;
+  visibility:hidden;
 }
 
-#inputbox1{
-  width: 250px;
+.inputbox1{
+  width: 220px;
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
   margin-left: 20px ;
 }
-#inputbox2{
-  width: 250px;
+.inputbox2{
+  width: 220px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
   margin-left: 20px ;
 }
 #Login{
-  width: 250px;
+  width: 220px;
   height: 53px;
   background-color: rgb(80,130,241);
   border:0px solid;
@@ -318,7 +323,7 @@ export default {
 }
 
 #Register{
-  width: 250px;
+  width: 220px;
   height: 53px;
   background-color: rgb(95,170,63);
   border:0px solid;
@@ -335,8 +340,8 @@ export default {
   font-size: 18px;
   margin-left: 65px;
 }
-  .login {
-  width: 300px;
+  .login1 {
+  width: 280px;
   height: 396px;
   padding:10px;
   border:0px solid;
@@ -351,25 +356,27 @@ export default {
   margin-top: 150px;
   margin-left: 5%;
   width: 300px;
-  opacity:0;
+  opacity:100;
+  visibility:hidden;
 }
 
-#inputbox1{
-  width: 250px;
+
+.inputbox1{
+  width: 200px;
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
   margin-left: 20px ;
 }
-#inputbox2{
-  width: 250px;
+.inputbox2{
+  width:200px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
   margin-left: 20px ;
 }
 #Login{
-  width: 250px;
+  width: 200px;
   height: 53px;
   background-color: rgb(80,130,241);
   border:0px solid;
@@ -382,7 +389,7 @@ export default {
 }
 
 #Register{
-  width: 250px;
+  width: 200px;
   height: 53px;
   background-color: rgb(95,170,63);
   border:0px  solid;

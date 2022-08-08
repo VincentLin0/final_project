@@ -1,6 +1,6 @@
 server:
   ip: localhost
-  port: 8080
+  port: 8888
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -25,7 +25,9 @@ spring:
 files:
   upload:
     #文件路径层级尽量少一些 最后一个斜杠必须加上，不然不会创建最后一个文件夹C:\Users\15626\Documents\SummerProject2022\saveAllFile1\
+
     path: C:\Users\15626\Desktop\files\
+
 
 
 

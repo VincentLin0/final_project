@@ -1,15 +1,17 @@
 <template lang="">
   <div class = "box">
-    <HeadBar></HeadBar>
+
+<HeadBar></HeadBar>
+
     <div class="search">		
 				<select class="d6">		
 					<option value="">Listes</option>
 					<option value="2">Listes1</option>
 					<option value="3">Listes2</option>
 				</select>
-				<input type="search" v-model="searchContent" @keyup.enter="search" placeholder="Type in something.">	
-				<!-- <div @click="search" class="sea"></div> -->
-				<router-link :to="'/result/' + searchContent" ><div  class="sea"></div></router-link>
+				<input type="search" v-model="searchContent" placeholder="Type in something.">	
+				<div @click="search" class="sea"></div>
+				<!-- <router-link class="search_box" :to="'/result/' + searchContent" ><div  class="sea"></div></router-link> -->
 			</div>
 			<div class="list">			
 				<p class="title1">Lists of Animals</p>
@@ -53,8 +55,9 @@
 				<p class="lattime">2022/04/11 | 50 Comments</p>
 				<br><hr>
 			</div>
-  
-    <BottomBar></BottomBar>
+
+<BottomBar></BottomBar>
+
   </div>
 </template>
 <script>
@@ -80,12 +83,21 @@ export default {
 	content(){
       this.$router.push('/content');
     },
+	search(){
+		this.$router.push({
+                path:'/result/' + this.searchContent,
+                query:{searchContent:this.searchContent}
+            })
+	}
 }
 }
 </script>
  
 <style>
-.search{
+.search_box{
+	height: 0;
+}
+.search{	
 				margin: 0 auto;
 				width: 63.2%;
 				height: 6em;
@@ -110,13 +122,15 @@ export default {
 				height:2.96em;
 				border: 0.1em solid #7a7a7a;
 				/* float: right;  */
-				margin-left :94.3%;
+				
 				position: relative;
+				left :94.3%;
 				top: -52%;
 				/* margin-top: -5.5%; */
 				background-image: url(../assets/img/sea.png);	
 				background-repeat: no-repeat;
 				cursor: pointer;	
+				
 			}
 			.list{
 				height: 400px;

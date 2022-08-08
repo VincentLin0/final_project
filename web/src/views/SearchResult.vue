@@ -1,8 +1,10 @@
 <template lang="">
   <div class = "box">
-    <HeadBar></HeadBar>
-	<searchResult class="body"></searchResult>
-    <BottomBar></BottomBar>
+
+<HeadBar></HeadBar>
+<searchResult class="mainContent"></searchResult>
+<BottomBar></BottomBar>
+
   </div>
 </template>
 <script>
@@ -26,8 +28,13 @@ export default {
 </script>
  
 <style>
-.body{
-  height: 720px;
-}
+/* .mainContent{
+  height: 1440px;
+} */
+.bottom{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 </style>
 

@@ -3,10 +3,13 @@
 
     <div class="question">{{dataInfo.question}}</div>
 <template>
-  <el-radio-group class="options" v-model="radio" >
+  <!-- <el-radio-group class="options" v-model="radio" >
     <el-radio class="option1" :label="3">{{dataInfo.options[0]}}</el-radio>
     <el-radio class="option2" :label="6">{{dataInfo.options[1]}}</el-radio>
     <el-radio class="option3" :label="9">{{dataInfo.options[2]}}</el-radio>
+  </el-radio-group> -->
+    <el-radio-group class="options" v-model="radio" >
+    <el-radio class ="option1" v-for="item in dataInfo.options" :key="item" :label="item">{{item}}</el-radio>
   </el-radio-group>
 </template>
 
@@ -110,8 +113,10 @@ export default {
         //   })
       },
       check_answer(){
-        if(this.radio === 3){
-        request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[0]})
+
+        for(let i =0;i<this.dataInfo.options.length;i++){
+          if(this.radio == this.dataInfo.options[i]){
+            request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[i]})
           .then((successResponse) => {
             console.log(successResponse) // 数组，所有符合条件的结果数组
             // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
@@ -127,43 +132,64 @@ export default {
           .catch((failResponse) => {
             console.log(failResponse)
           })
+          }
         }
-        if(this.radio === 6){
-        request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[1]})
-         .then((successResponse) => {
-            console.log(successResponse) // 数组，所有符合条件的结果数组
-            // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
-            let list = successResponse
-            this.answerInfo = list.data
-            console.log(this.answerInfo)
-            this.open()
-            if (successResponse.length === 0) {
-              alert('error')
-            }
-          })
-          // 指定发生错误时的回调函数
-          .catch((failResponse) => {
-            console.log(failResponse)
-          })
-        }
-        if(this.radio === 9){
-        request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[2]})
-         .then((successResponse) => {
-            console.log(successResponse) // 数组，所有符合条件的结果数组
-            // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
-            let list = successResponse
-            this.answerInfo = list.data
-            console.log(this.answerInfo)
-            this.open()
-            if (successResponse.length === 0) {
-              alert('error')
-            }
-          })
-          // 指定发生错误时的回调函数
-          .catch((failResponse) => {
-            console.log(failResponse)
-          })
-        }
+
+
+        // if(this.radio === 3){
+        // request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[0]})
+        //   .then((successResponse) => {
+        //     console.log(successResponse) // 数组，所有符合条件的结果数组
+        //     // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
+        //     let list = successResponse
+        //     this.answerInfo = list.data
+        //     console.log(this.answerInfo)
+        //     this.open()
+        //     if (successResponse.length === 0) {
+        //       alert('error')
+        //     }
+        //   })
+        //   // 指定发生错误时的回调函数
+        //   .catch((failResponse) => {
+        //     console.log(failResponse)
+        //   })
+        // }
+        // if(this.radio === 6){
+        // request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[1]})
+        //  .then((successResponse) => {
+        //     console.log(successResponse) // 数组，所有符合条件的结果数组
+        //     // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
+        //     let list = successResponse
+        //     this.answerInfo = list.data
+        //     console.log(this.answerInfo)
+        //     this.open()
+        //     if (successResponse.length === 0) {
+        //       alert('error')
+        //     }
+        //   })
+        //   // 指定发生错误时的回调函数
+        //   .catch((failResponse) => {
+        //     console.log(failResponse)
+        //   })
+        // }
+        // if(this.radio === 9){
+        // request.post("users/quiz?id="+this.id,{"option": this.dataInfo.options[2]})
+        //  .then((successResponse) => {
+        //     console.log(successResponse) // 数组，所有符合条件的结果数组
+        //     // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
+        //     let list = successResponse
+        //     this.answerInfo = list.data
+        //     console.log(this.answerInfo)
+        //     this.open()
+        //     if (successResponse.length === 0) {
+        //       alert('error')
+        //     }
+        //   })
+        //   // 指定发生错误时的回调函数
+        //   .catch((failResponse) => {
+        //     console.log(failResponse)
+        //   })
+        // }
         
       },
       next_question(){
@@ -280,6 +306,7 @@ export default {
 }
 .option1{
   display: block;
+  margin-top: 10px;
 }
 .option2{
   display: block;
@@ -292,6 +319,7 @@ export default {
 .check{
   display: block;
   margin-top: 100px;
+  margin-bottom: 100px;
   margin-left: 15%;
 }
 					

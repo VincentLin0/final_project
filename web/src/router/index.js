@@ -15,7 +15,7 @@ import BackStageView_AQ from '../views/BackStageView_AQ.vue'
 
 Vue.use(VueRouter)
 
-//https://www.jianshu.com/p/3643eed33246
+
 const RouterPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (to) {
   return RouterPush.call(this, to).catch(err => err)
@@ -98,11 +98,27 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
 
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' || to.path === '/signup' || to.path === '/' || to.path === '/search'|| to.name === 'result' || to.name === 'content') {
+                                                                                                  to.path === '/result/:searchContent'
+    next();
+  } else {
+    let token = localStorage.getItem('token');
+ 
+    if (token === null || token === '') {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
+ 
 
 // router.beforeEach((to, from, next) => {
 //   if (to.path === '/login' || to.path === '/signup' || to.path === '/') {
@@ -117,6 +133,7 @@ const router = new VueRouter({
 //     }
 //   }
 // });
+
 
 
 
