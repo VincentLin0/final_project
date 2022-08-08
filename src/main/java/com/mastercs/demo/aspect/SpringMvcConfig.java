@@ -29,6 +29,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/users/login",
                         "/users/signup",
+                        "/result",
                         "/view",
                         "/uploads"
                 );
