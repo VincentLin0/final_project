@@ -1,6 +1,6 @@
 package com.mastercs.demo.controller;
 
-import com.mastercs.demo.bean.Receive;
+import com.mastercs.demo.payload.Receive;
 import com.mastercs.demo.bean.Search;
 import com.mastercs.demo.repository.SearchDAO;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -13,7 +13,7 @@ public class Question {
     private Long id;
 
     @NotBlank
-    @Size(max = 200)
+    @Size(max = 500)
     private String questionTitle;
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
