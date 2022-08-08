@@ -82,9 +82,6 @@ public class JwtUtils {
         } catch (UnsupportedJwtException e) {
             log.error("JWT token is unsupported: {}", e.getMessage());
             throw new RuntimeException("JWT token is unsupported");
-        } catch (IllegalArgumentException e) {
-            log.error("JWT claims string is empty: {}", e.getMessage());
-            throw new RuntimeException("JWT claims string is empty");
         }
     }
 

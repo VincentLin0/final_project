@@ -1,11 +1,16 @@
 package com.mastercs.demo.payload;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-public class AdminQuizDto {
+public class AdminAddDto {
 
+    @NotBlank
     private String question;
+    @NotEmpty
     private List<String> options;
+    @NotBlank
     private String answer;
 
     public String getQuestion() {

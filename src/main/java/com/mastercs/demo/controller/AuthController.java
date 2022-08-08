@@ -38,8 +38,6 @@ public class AuthController {
   @PostMapping("/login")
   public Result<?> authenticateUser(@Valid @RequestBody LoginDto loginRequest, HttpServletRequest request) {
 
-    //JwtUtils.isAdmin(request);
-
     User userInfo = userRepository.findUserByUsername(loginRequest.getUsername());
     if(userInfo != null){
       //login success
@@ -55,17 +53,17 @@ public class AuthController {
         map.put("token",token);
         return Result.success(map);
       }else{
-        return Result.error("username or password fail");
+        return Result.error("401", "username or password does not match with record");
       }
     }
     //return userInfo and token
-    return Result.error("login fail");
+    return Result.error("401","login fail");
 
   }
 
 
   @PostMapping("/signup")
-  public Result<?> registerUser(@RequestBody SignupDto signUpRequest) {
+  public Result<?> registerUser(@Valid @RequestBody SignupDto signUpRequest) {
 
     if (userRepository.findByEmail(signUpRequest.getEmail()).isPresent()) {
       return Result.error("Error: Email is already in use!");

@@ -4,18 +4,18 @@ import com.mastercs.demo.bean.EnumOption;
 import com.mastercs.demo.bean.Options;
 import com.mastercs.demo.bean.Question;
 import com.mastercs.demo.config.Result;
-import com.mastercs.demo.payload.AdminQuizDto;
+import com.mastercs.demo.payload.AdminAddDto;
+import com.mastercs.demo.payload.AdminDeleteDto;
 import com.mastercs.demo.payload.AllQuizResponse;
 import com.mastercs.demo.repository.OptionRepository;
 import com.mastercs.demo.repository.QuestionRepository;
 import com.mastercs.demo.repository.UserQuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,7 +40,7 @@ public class AdminController {
     }
 
     @PostMapping("/add-question")
-    public Result<?> adminAddQuestions(@RequestBody AdminQuizDto adminQuizDto)
+    public Result<?> adminAddQuestions(@Valid @RequestBody AdminAddDto adminQuizDto)
     {
         if (questionRepository.findQuestionByQuestionTitle(adminQuizDto.getQuestion())!= null)
         {
@@ -68,32 +68,18 @@ public class AdminController {
         return Result.success("Added new question!");
     }
 
-//    @PostMapping("/modify-questions")
-//    public ResponseEntity adminModifyQuestions(@RequestBody ModifyQuizDto modifyQuizDto)
-//    {
-//        if (modifyQuizDto.getNewQuestion() == null)
-//        {
-//            return ResponseEntity.ok("Question remains same!");
-//        }
-//
-//        Question question = questionRepository.findQuestionByQuestionTitle(modifyQuizDto.getOldQuestion());
-//        question.setQuestionTitle(modifyQuizDto.getNewQuestion());
-//        questionRepository.save(question);
-//        return ResponseEntity.ok("Question modified successfully!");
-//    }
-
     @Transactional()
     @PostMapping("/delete-question")
-    public Result<?> adminDeleteQuestions(@RequestBody AdminQuizDto adminQuizDto)
+    public Result<?> adminDeleteQuestions(@Valid @RequestBody AdminDeleteDto adminDeleteDto)
     {
-        Question question = questionRepository.findQuestionByQuestionTitle(adminQuizDto.getQuestion());
+        Question question = questionRepository.findQuestionByQuestionTitle(adminDeleteDto.getQuestion());
         if (question == null)
         {
             return Result.error("The question does not exist");
         }
 
         optionRepository.deleteOptionsByQuestion(question);
-        questionRepository.deleteAllByQuestionTitle(adminQuizDto.getQuestion());
+        questionRepository.deleteAllByQuestionTitle(adminDeleteDto.getQuestion());
         if (userQuestionRepository != null)
         {
             userQuestionRepository.deleteAllByQuestion(question);
