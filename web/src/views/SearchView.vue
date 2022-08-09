@@ -84,10 +84,12 @@ export default {
       this.$router.push('/content');
     },
 	search(){
+		if(this.searchContent!=''){
 		this.$router.push({
                 path:'/result/' + this.searchContent,
                 query:{searchContent:this.searchContent}
             })
+	}
 	}
 }
 }

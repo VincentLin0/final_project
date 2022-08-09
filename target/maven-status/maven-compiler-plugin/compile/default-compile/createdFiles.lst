@@ -1,1 +1,5 @@
+com/mastercs/demo/payload/Receive.class
+com/mastercs/demo/controller/TutorialController.class
+com/mastercs/demo/bean/Tutorial.class
+com/mastercs/demo/repository/TutorialRepository.class
 com/mastercs/demo/exception/GlobalExceptionHandler.class
