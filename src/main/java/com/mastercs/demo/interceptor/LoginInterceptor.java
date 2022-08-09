@@ -48,7 +48,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         Claims claims = JwtUtils.verifyJwt(token);
         if (claims == null) {
             log.warn("Invalid token, the HTTP request is intercepted");
-            return false;
+            throw new IllegalArgumentException("JWT claims string is empty");
         }
         Integer userId = (Integer) claims.get("userId");
         log.info("User logged in, user id[{}]", userId);

@@ -122,7 +122,7 @@ public class UserController {
 
         if (allUserQuestionList.size() == 0)
         {
-            return Result.error("The user haven't take the quiz yet");
+            return Result.error("The user hasn't take the quiz yet");
         }
 
         int allQuestion = allUserQuestionList.size();
