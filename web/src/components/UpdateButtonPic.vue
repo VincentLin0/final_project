@@ -1,7 +1,9 @@
 <template>
-	<el-upload
+<!--  action="http://176.58.99.74:8888/uploads"-->
+
+  <el-upload
 	class="upload-demo"
-	action="http://176.58.99.74:8888/uploads"
+	action="uploadPath"
 	:on-preview="handlePreview"
 	:on-remove="handleRemove"
 	:file-list="fileList"
@@ -15,6 +17,7 @@
   export default {
     data() {
       return {
+        uploadPath:process.env.VUE_APP_SERVER + "/uploads",
         fileList: [{name: 'food.jpeg', url: 'http://localhost:8080/view?relativePath=79200ad8-3394-4644-acd7-8959282a9848.png'}, {name: '111', url: '/Users/linduoying/Downloads/saveAllFile/79200ad8-3394-4644-acd7-8959282a9848.png'}]
       };
     },

@@ -75,7 +75,7 @@ a {
 	float: right;
 
 	right: 12%;
-	top:115px;
+	top:280px;
 	/* margin-top: 0px; */
 	opacity: 0.8;
 	z-index: 1;
@@ -210,13 +210,13 @@ a {
 .vision {
 	width: 80%;
 	background-color: white;
-
 	float: left;
 	margin-top: 5px;
 	margin-left: 10%;
 	box-shadow: 0px 3px 10px 2px grey;
 	position:relative;
 	z-index: 2;
+
 
 
 }
@@ -235,7 +235,7 @@ a {
 	width: 80%;
 	/* background-color: pink; */
 	float: left;
-	font-size: 20px;
+	font-size: 18px;
 	margin-left: 10%;
 	margin-top: 25px;
 	word-spacing: 10px;
@@ -269,14 +269,14 @@ a {
 .news{
 	height: 50px;
 	margin-top: 4%;
-
+	display:flex;
+	justify-content: center;
 }
 .news1 {
 	width: 230px;
 	height: 300px;
-	float: left;
-	margin-left: 15%;
-	margin-right: 10%;
+	margin-left: 3%;
+	margin-right: 3%;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
 
@@ -312,8 +312,8 @@ a {
 	width: 230px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 10%;
+	margin-left: 3%;
+	margin-right: 3%;
 
 }
 
@@ -322,7 +322,8 @@ a {
 	width: 230px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
+	margin-left: 3%;
+	margin-right: 3%;
 }
 
 
@@ -336,7 +337,7 @@ a {
 	float: right;
 
 	right: 9%;
-	top:115px;
+	top:280px;
 	/* margin-top: 0px; */
 	opacity: 0.1;
 
@@ -346,9 +347,6 @@ a {
 	.news1 {
 	width: 230px;
 	height: 300px;
-	float: left;
-	margin-left: 10%;
-	margin-right: 10%;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
 }
@@ -356,17 +354,14 @@ a {
 	.news1 {
 	width: 230px;
 	height: 300px;
-	float: left;
-	margin-left: 10%;
-	margin-right: 5%;
+
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
 .news2 {
 	width: 230px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 5%;
+
 
 }
 
@@ -375,7 +370,7 @@ a {
 	width: 230px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
+
 }
 
 }
@@ -383,17 +378,14 @@ a {
 	.news1 {
 	width: 230px;
 	height: 300px;
-	float: left;
-	margin-left: 5%;
-	margin-right: 5%;
+
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
 .news2 {
 	width: 230px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 5%;
+
 
 }
 
@@ -402,7 +394,7 @@ a {
 	width: 230px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
+
 }
 
 }
@@ -410,17 +402,14 @@ a {
 	.news1 {
 	width: 200px;
 	height: 300px;
-	float: left;
-	margin-left: 5%;
-	margin-right: 5%;
+
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
 .news2 {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 5%;
+
 
 }
 
@@ -429,7 +418,7 @@ a {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
+
 }
 .news1_pic,
 .news2_pic,
@@ -466,8 +455,7 @@ a {
 	width: 300px;
 	height: 300px;
 	/* float: left; */
-	margin-left: 27%;
-	margin-right: 5%; 
+
 
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
@@ -475,8 +463,6 @@ a {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 5%;
 	display: none;
 
 }
@@ -522,8 +508,7 @@ a {
 	width: 300px;
 	height: 300px;
 	/* float: left; */
-	margin-left: 22%;
-	margin-right: 5%; 
+
 
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
@@ -666,8 +651,7 @@ a {
 	width: 300px;
 	height: 300px;
 	/* float: left; */
-	margin-left: 22%;
-	margin-right: 5%; 
+
 
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
@@ -675,8 +659,7 @@ a {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 5%;
+
 	display: none;
 
 }
@@ -686,7 +669,7 @@ a {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
+
 	display: none;
 }
 .news1_pic,
@@ -810,8 +793,7 @@ a {
 	width: 300px;
 	height: 300px;
 	/* float: left; */
-	margin-left: 15%;
-	margin-right: 5%; 
+
 
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
@@ -819,8 +801,7 @@ a {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
-	margin-right: 5%;
+
 	display: none;
 
 }
@@ -830,7 +811,7 @@ a {
 	width: 200px;
 	height: 300px;
 	box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-	float: left;
+
 	display: none;
 }
 .news1_pic,
@@ -951,9 +932,7 @@ z-index: 2;
 .news1 {
 width: 300px;
 height: 300px;
-/* float: left; */
-margin-left: 8%;
-margin-right: 5%; 
+
 
 box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 }
@@ -961,8 +940,7 @@ box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
 width: 200px;
 height: 300px;
 box-shadow: 0px 2px 5px 1px rgb(172, 170, 170);
-float: left;
-margin-right: 5%;
+
 display: none;
 
 }
@@ -1006,7 +984,7 @@ height: 220px
 	float: right;
 
 	right: 4%;
-	top:223px;
+	top:280px;
 	/* margin-top: 0px; */
 	opacity: 0.1;
 	z-index: 1;

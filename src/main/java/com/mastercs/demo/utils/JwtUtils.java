@@ -144,6 +144,17 @@ public class JwtUtils {
         return (String) claims.get("username");
     }
 
+    public static Integer getUserId(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        Claims claims = verifyJwt(token);
+
+        if(claims != null){
+            return (Integer) claims.get("userId");
+        }else{
+            log.error("User not found");
+        }
+        return -1;
+    }
 
 }
 

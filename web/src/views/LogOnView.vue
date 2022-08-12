@@ -7,24 +7,24 @@
       <img  src="../assets/img/logo1.svg"  alt="cannot  show"  class="logo">
     </div>
     <div class="login" id="login">
-      <h2 class = "title">Welcome to sign up</h2>
+      <div class="center"><h2 class = "title">Welcome to Signup</h2></div>
       <div class="input-wrap">
         <!-- <label for="male">Account number:</label> -->
-        <input id = "inputbox1" type="text" v-model="username" placeholder="Account number"/>
+        <div class="center"><input class = "inputbox1" type="text" v-model="username" placeholder="Username"/></div>
         
       </div>
       <div class="input-wrap">
         <!-- <label for="male">Account number:</label> -->
-        <input id = "inputbox2" type="email" v-model="email" placeholder="Email"/>
+        <div class="center"><input class = "inputbox2" type="email" v-model="email" placeholder="Email"/></div>
         
       </div>
       <div class="input-wrap">
         <!-- <label for="male">Password：</label> -->
-        <input id = "inputbox2" type="password" v-model="password" placeholder="Password"/>
+        <div class="center"><input class = "inputbox2" type="password" v-model="password" placeholder="Password"/></div>
       </div>
       <div class="input-wrap">
         <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
-        <button id= "Register" @click="regist">Sign up</button>
+       <div class="center"> <button class= "Register" @click="regist">Sign up</button></div>
 
       </div>
       
@@ -144,12 +144,16 @@ export default {
 </script>
  
 <style>
+.center{
+  display: flex;
+  justify-content: center;
+}
 .box{
   background-color:aliceblue;
 }
 .title{
   font-size: 24px;
-  margin-left: 115px;
+
 }
 .login {
   width: 456px;
@@ -171,21 +175,21 @@ export default {
   width: 300px;
 }
 
-#inputbox1{
+.inputbox1{
   width: 364px;
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
-  margin-left: 35px ;
+
 
 
 }
-#inputbox2{
+.inputbox2{
   width: 364px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-  margin-left: 35px ;
+
 }
 #Login{
   width: 364px;
@@ -199,7 +203,7 @@ export default {
   margin-left:55px;
 }
 
-#Register{
+.Register{
   width: 364px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -208,7 +212,7 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:55px;
+
   cursor:pointer;
 }
 @media screen and (min-width: 900px) and (max-width: 1120px) {
@@ -255,7 +259,7 @@ export default {
  @media screen and (min-width: 425px) and (max-width: 720px) {
   .title{
   font-size: 18px;
-  margin-left: 65px;
+
 }
   .login {
   width: 300px;
@@ -275,19 +279,19 @@ export default {
   opacity:0;
 }
 
-#inputbox1{
+.inputbox1{
   width: 250px;
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
-  margin-left: 20px ;
+
 }
-#inputbox2{
+.inputbox2{
   width: 250px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-  margin-left: 20px ;
+
 }
 #Login{
   width: 250px;
@@ -301,7 +305,7 @@ export default {
   margin-left:20px;
 }
 
-#Register{
+.Register{
   width: 250px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -310,14 +314,14 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:20px;
+
   cursor:pointer;
 }
 }
 @media screen and (min-width: 0px) and (max-width: 425px) {
   .title{
   font-size: 18px;
-  margin-left: 65px;
+
 }
   .login {
   width: 300px;
@@ -338,19 +342,19 @@ export default {
   opacity:0;
 }
 
-#inputbox1{
+.inputbox1{
   width: 250px;
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
-  margin-left: 20px ;
+
 }
-#inputbox2{
+.inputbox2{
   width: 250px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-  margin-left: 20px ;
+
 }
 #Login{
   width: 250px;
@@ -364,7 +368,7 @@ export default {
   margin-left:20px;
 }
 
-#Register{
+.Register{
   width: 250px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -373,7 +377,7 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 15px;
-  margin-left:20px;
+
   cursor:pointer;
 }
 }

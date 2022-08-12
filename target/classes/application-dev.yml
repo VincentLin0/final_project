@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/users?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+    tomcat:
+      max-swallow-size: 1000MB #最重要的是这行
+files:
+  upload:
+    #文件路径层级尽量少一些 最后一个斜杠必须加上，不然不会创建最后一个文件夹C:\Users\15626\Documents\SummerProject2022\saveAllFile1\
+    #    path: C:\Users\15626\Desktop\files\
+    path: C:\Users\h\Desktop\uploads\
+
+file-path: http://localhost:8888/view?relativePath=
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+

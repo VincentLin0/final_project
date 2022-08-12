@@ -1,6 +1,7 @@
 package com.mastercs.demo.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.mastercs.demo.config.Result;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,7 +13,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -21,12 +25,8 @@ public class FilesController {
 
     @Value("${files.upload.path}")
     private String fileUploadPath;
-
-    @Value("${server.ip}")
-    private String serverIp;
-    @Value("${server.port}")
-    private String serverPort;
-
+    @Value("${file-path}")
+    private String filePath;
     /**
      * 文件上传
      *
@@ -35,31 +35,37 @@ public class FilesController {
      * @throws IOException
      */
     @PostMapping("/uploads")
-    public Object files(@RequestParam MultipartFile file) throws IOException {
+    public Result files(@RequestParam MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
         String uuid = UUID.randomUUID().toString();
         //获取后缀名
         String fix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         String fileName = uuid + fix;
-        String relativePath = fileUploadPath + fileName;
+
+        Date date = new Date();
+        String folderPath = new SimpleDateFormat("yyyy/MM/dd/").format(date);
+
+        String absolutePath = fileUploadPath +folderPath+ fileName;
+        String serverPath = filePath +folderPath+ fileName;
+        String relativePath = folderPath+ fileName;
+
         int len = 0;
         //设置缓冲区
         byte[] bytes = new byte[1024];
-        File folder = new File(fileUploadPath);
+        File folder = new File(fileUploadPath +folderPath);
         if (!folder.exists()) {
             folder.mkdirs();
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(relativePath);
+        FileOutputStream fileOutputStream = new FileOutputStream(absolutePath);
         while ((len = inputStream.read(bytes)) != -1) {
                 fileOutputStream.write(bytes, 0, len);
         }
         fileOutputStream.close();
         inputStream.close();
         HashMap<String, String> map = new HashMap<>();
-        map.put("absolutePath", "http://" + serverIp + ":" + serverPort + "/view?relativePath=" + fileName);
-
+        map.put("absolutePath", serverPath);
         map.put("relativePath", relativePath);
-        return map;
+        return Result.success(map);
 
     }
 

@@ -1,14 +1,11 @@
 <template>
 	<div class="slideshow">
 			<div>
-            <img src="../assets/img/cat.svg" alt="cat" class="main_pic">
+            <img src="../assets/img/dog1.png" alt="cat" class="main_pic">
         </div>
             <div class="space"></div>
             <div class="description">
-                <h3 class="introduction">Langford Vets is a group of customer focused veterinary businesses providing an
-                    extensive range of Specialist capabilities and a superior quality of care.
-                    We have the largest team of American and European Specialists in the South West of England and are
-                    members of the Royal College of Veterinary Surgeons Practice Standards Scheme.
+                <h3 class="introduction">Vet Auscultation Library (VAL) is an open-access, online tool where veterinary professionals and students can refine their auscultation techniques. Built by a team of veterinary specialists in cardiology, VAL aims to provide a wide variety of normal and abnormal heart sounds for reference, in addition to a self-test quiz of heart sounds with multiple-choice questions and feedback.  
                      </h3>
             </div>
         <div class="selectpic">
@@ -20,7 +17,7 @@
             <div class="selections">
                 <span @click="search" class="sl">Search</span>
                 <span @click="self_test" class="st">Self-test</span>
-                <span href="#" class="tt">Tutorial</span>
+                <span @click="tutorial" class="tt">Tutorial</span>
             </div>
 
         </div>
@@ -28,10 +25,7 @@
                 <p class="p1">Our Vision</p>
                 <div class="double_quotation1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</div>
                 <div class="p2">
-                    We are the leading multidisciplinart provider of veterinary services in the South West. As part of
-                    the
-                    University of Bristol we provide a world class teaching enviornment to both undergraduate and
-                    post-graduate students
+                    Auscultation skills are a vital part of the routine physical examination of companion animals.
                 </div>
                 <div class='clear'></div>
                 <div class="double_quotation2">"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -47,6 +41,9 @@ export default {
         search(){
           this.$router.push('/search');
         },
+      tutorial(){
+        this.$router.push('/tutorial');
+      },
         self_test(){
         this.$router.push('/test');
         }

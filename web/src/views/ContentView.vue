@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <HeadBar></HeadBar>
-    <ContentBox></ContentBox>
+    <div class="content"><ContentBox></ContentBox></div>
+    
     <BottomBar class="bottom"></BottomBar>
   </div>
 </template>
@@ -27,6 +28,9 @@ export default {
 
 <style>
 #app {
+}
+.content{
+  min-height: 500px;
 }
 .bottom{
     position: absolute;

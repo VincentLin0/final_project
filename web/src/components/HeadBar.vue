@@ -6,7 +6,7 @@
       <span @click="home" class="nav1">Home</span>
       <span v-if = "isShow == false" @click="login"  class="nav3" >Log in</span> 
 			<span v-if = "isShow == false" @click="signup"  class="nav3" >Sign up</span>
-      <span v-if = "isShow == true" @click="login"  class="nav3" >My collection</span>
+      <span v-if = "isShow == true" @click="collection"  class="nav3" >My collection</span>
       <span v-if = "isShow1 == true" @click="backStage"  class="nav3" >Management</span>
       <span v-if = "isShow == true" @click="logout"  class="nav3" >Log out</span>
       
@@ -33,8 +33,11 @@ export default {
       }
     },
   methods:{
+    collection(){
+      this.$router.push('/collection');
+    },
     backStage(){
-      this.$router.push('/backStage/testManagement');
+      this.$router.push('/backStage');
     },
     home(){
       this.$router.push('/');

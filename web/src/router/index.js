@@ -12,6 +12,12 @@ import BackStageView_CM from '../views/BackStageView_CM.vue'
 import BackStageView_AC from '../views/BackStageView_AC.vue'
 import BackStageView_TM from '../views/BackStageView_TM.vue'
 import BackStageView_AQ from '../views/BackStageView_AQ.vue'
+import BackStageView_TU from '../views/BackStageView_TU.vue'
+import MyCollectionView from '../views/CollectionView.vue'
+import TutorialView from '../views/TutorialView.vue'
+import TutorialContent from '../views/TutorialContentView.vue'
+
+
 
 Vue.use(VueRouter)
 
@@ -42,14 +48,29 @@ const routes = [
     component: SearchView
   },
   {
-    path: '/content/:id',
+    path: '/knowledge/:id',
     name: 'content',
     component: ContentView
   },
   {
-    path: '/result/:searchContent',
+    path: '/tutorial/:id',
+    name: 'tutorialContent',
+    component: TutorialContent
+  },
+  {
+    path: '/result/',
     name: 'result',
     component: SearchResult
+  },
+  {
+    path: '/collection/',
+    name: 'collection',
+    component: MyCollectionView
+  },
+  {
+    path: '/tutorial/',
+    name: 'tutorial',
+    component: TutorialView
   },
   {
     path: '/signup',
@@ -87,6 +108,11 @@ const routes = [
     name: 'testManagement',
     component: BackStageView_AQ
   },
+  {
+    path: '/backStage/TutorialManagement',
+    name: 'BackStageTutorial',
+    component: BackStageView_TU
+  },
   // {
   //   path: '/login',
   //   name: 'login',
@@ -105,8 +131,8 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login' || to.path === '/signup' || to.path === '/' || to.path === '/search'|| to.name === 'result' || to.name === 'content') {
-                                                                                                  to.path === '/result/:searchContent'
+  if (to.path === '/login' || to.path === '/signup' || to.path === '/' || to.path === '/search'|| to.path === '/result/' ) {
+                                                                                             
     next();
   } else {
     let token = localStorage.getItem('token');
@@ -119,20 +145,6 @@ router.beforeEach((to, from, next) => {
   }
 });
  
-
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/login' || to.path === '/signup' || to.path === '/') {
-//     next();
-//   } else {
-//     let token = localStorage.getItem('token');
-
-//     if (token === null || token === '') {
-//       next('/login');
-//     } else {
-//       next();
-//     }
-//   }
-// });
 
 
 

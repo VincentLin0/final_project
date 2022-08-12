@@ -104,9 +104,11 @@ import request from '@/utils/request';
   .option1{
     margin-top: 10px;
     width: 50%;
+    display: inline-block;
   }
   .upload{
     margin-top: 20px;
-    margin-left: 400px;
+    margin-left: 30px;
+    display: inline-block;
   }
 </style>

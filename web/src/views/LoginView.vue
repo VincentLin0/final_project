@@ -6,22 +6,25 @@
     <div>
       <img  src="../assets/img/logo1.svg"  alt="cannot  show"  class="logo">
     </div>
+    <div class="center">
     <div class="login1">
-      <h2 class = "title">Welcome to log in</h2>
-      <div >
+      <div class="center"><h2 class = "title0">Welcome to Login</h2></div>
+      
+      
         <!-- <label for="male">Account number:</label> -->
-        <input class = "inputbox1" type="text" v-model="loginForm.username" placeholder="Account number"/>
-        
+        <div class="center">
+        <input class = "inputbox1" type="text" v-model="loginForm.username" placeholder="Username"/>
       </div>
-      <div >
+      <div class="center">
         <!-- <label for="male">Password：</label> -->
         <input class = "inputbox2" type="password" v-model="loginForm.password" placeholder="Password"/>
       </div>
       <div>
         <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
-        <button id= "Login" @click="login">Log in</button>&nbsp;&nbsp;
-        <button id= "Register" @click="regist">Register</button>
+        <div class="center"><button class= "Login" @click="login">Log in</button></div>
+        <div class="center"><button class= "Register" @click="regist">Register</button></div>
       </div>
+    </div>
     </div>
         </el-main>
     </el-container>
@@ -163,10 +166,19 @@ export default {
 .box{
   background-color:aliceblue;
 }
-.title{
+.title0{
   font-size: 24px;
-  margin-left: 115px;
 }
+.center0{
+  display: flex;
+  justify-content: center;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+
 .login1 {
   width: 456px;
   height: 396px;
@@ -192,8 +204,8 @@ export default {
   width: 364px;
   height: 53px;
   margin-top: 15px;
-  margin-bottom: 20px;
-  margin-left: 35px ;
+  margin-bottom: 20px
+  /* margin-left: 35px ;  */
 
 
 }
@@ -202,9 +214,9 @@ export default {
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-  margin-left: 35px ;
+
 }
-#Login{
+.Login{
   width: 364px;
   height: 53px;
   background-color: rgb(80,130,241);
@@ -213,11 +225,10 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:55px;
   cursor:pointer;
 }
 
-#Register{
+.Register{
   width: 364px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -226,7 +237,6 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:55px;
   cursor:pointer;
 }
 @media screen and (min-width: 900px) and (max-width: 1120px) {
@@ -260,22 +270,22 @@ export default {
   background-color: white;
   box-shadow: 1px 1px 5px #c4c4c4;
   /*margin: 20% auto;*/
-  /* margin-top: 20px;  */
-  margin-left: 20%;
+  margin-left: 0; 
+
   cursor:pointer;
 }
 .logo{
   margin-top: 150px;
   margin-left: 5%;
   width: 300px;
-  opacity:0;
+  visibility:hidden;
 }
 }
 
  @media screen and (min-width: 426px) and (max-width: 720px) {
-  .title{
+  .title0{
   font-size: 18px;
-  margin-left: 65px;
+
 }
   .login1 {
   width: 300px;
@@ -285,8 +295,7 @@ export default {
   border-radius:7px;
   background-color: white;
   box-shadow: 1px 1px 5px #c4c4c4;
-
-  margin-left: 20%;
+  margin-left: 0; 
 }
 .logo{
   margin-top: 150px;
@@ -300,16 +309,14 @@ export default {
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
-  margin-left: 20px ;
 }
 .inputbox2{
   width: 220px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-  margin-left: 20px ;
 }
-#Login{
+.Login{
   width: 220px;
   height: 53px;
   background-color: rgb(80,130,241);
@@ -318,11 +325,10 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:20px;
   cursor:pointer;
 }
 
-#Register{
+.Register{
   width: 220px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -331,14 +337,13 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:20px;
   cursor:pointer;
 }
 }
 @media screen and (min-width: 0px) and (max-width: 425px) {
-  .title{
+  .title0{
   font-size: 18px;
-  margin-left: 65px;
+
 }
   .login1 {
   width: 280px;
@@ -348,9 +353,9 @@ export default {
   border-radius:7px;
   background-color: white;
   box-shadow: 1px 1px 5px #c4c4c4;
-  /*margin: 20% auto;*/
+  margin-left: 0; 
   /* margin-top: 20px;  */
-  margin-left: 5%;
+
 }
 .logo{
   margin-top: 150px;
@@ -366,16 +371,16 @@ export default {
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
-  margin-left: 20px ;
+
 }
 .inputbox2{
   width:200px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-  margin-left: 20px ;
+
 }
-#Login{
+.Login{
   width: 200px;
   height: 53px;
   background-color: rgb(80,130,241);
@@ -384,11 +389,11 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:20px;
+
   cursor:pointer;
 }
 
-#Register{
+.Register{
   width: 200px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -397,7 +402,7 @@ export default {
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:20px;
+
   cursor:pointer;
 }
 }

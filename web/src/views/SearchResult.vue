@@ -1,9 +1,9 @@
 <template lang="">
   <div class = "box">
 
-<HeadBar></HeadBar>
-<searchResult class="mainContent"></searchResult>
-<BottomBar></BottomBar>
+    <HeadBar></HeadBar>
+    <div class="mainContent"><searchResult></searchResult></div>
+    <BottomBar></BottomBar>
 
   </div>
 </template>
@@ -28,9 +28,9 @@ export default {
 </script>
  
 <style>
-/* .mainContent{
-  height: 1440px;
-} */
+.mainContent{
+  min-height: 880px;
+}
 .bottom{
     position: absolute;
     left: 0;

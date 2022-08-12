@@ -32,7 +32,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/result",
                         "/tutorial",
                         "/view",
-                        "/uploads"
+                        "/view**",
+                        "/uploads",
+                        "/queryById**"
                 );
         registry.addInterceptor(permissionInterceptor)
                 .addPathPatterns("/users/admin/quiz/**");

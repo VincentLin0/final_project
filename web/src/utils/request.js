@@ -43,11 +43,11 @@
 
 
 import axios from 'axios'
+import Element from "element-ui"
 
 const request = axios.create({
-
-	baseURL: 'http://176.58.99.74:8888',  // 注意！！ 这里是全局统一加上了 后端接口前缀 前缀，后端必须进行跨域配置！
-
+    baseURL: process.env.VUE_APP_SERVER,  // 注意！！ 这里是全局统一加上了 后端接口前缀 前缀，后端必须进行跨域配置！
+    
 })
 
 // request 拦截器
@@ -72,6 +72,12 @@ request.interceptors.response.use(
         if (response.config.responseType === 'blob') {
             return res
         }
+        console.log(response.data)
+        if(response.data.code==="500"||response.data.code==="400"){
+            Element.Message.error(response.data.msg)
+            return Promise.reject(response.data.msg)
+        }
+
         // 兼容服务端返回的字符串数据
         if (typeof res === 'string') {
             res = res ? JSON.parse(res) : res

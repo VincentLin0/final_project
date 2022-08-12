@@ -1,9 +1,14 @@
 <template>
   <div id="app">
     <HeadBar></HeadBar>
+    <div class="mainContent">
     <SlideShow></SlideShow>
     <NewBox></NewBox>
+    </div>
+    <div class="blank"></div>
     <BottomBar></BottomBar>
+    
+   
   </div>
 </template>
 
@@ -30,5 +35,11 @@ export default {
 <style>
 #app {
 
+}
+.mainContent{
+  min-height: 880px;
+}
+.blank{
+  height: 250px;
 }
 </style>

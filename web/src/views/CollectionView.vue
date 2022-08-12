@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <HeadBar></HeadBar>
-    <CollectionBox></CollectionBox>
-    <BottomBar class="bottom"></BottomBar>
+		<HeadBar></HeadBar>
+		<div class="content"><CollectionBox></CollectionBox></div>
+		<BottomBar class="bottom"></BottomBar>
   </div>
 </template>
 
@@ -33,4 +33,7 @@ export default {
     left: 0;
     bottom: 0;
   }
+.content{
+	min-height: 650px;
+}
 </style>

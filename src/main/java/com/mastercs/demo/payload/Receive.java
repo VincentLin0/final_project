@@ -1,11 +1,12 @@
 package com.mastercs.demo.payload;
 
 
+import com.mastercs.demo.dto.PageInfo;
+import lombok.Data;
 
-public class Receive {
+@Data
+public class Receive extends PageInfo {
     // 接收来自前端的输出
     String searchContent;
-    public String getSearchContent() {
-        return searchContent;
-    }
+
 }

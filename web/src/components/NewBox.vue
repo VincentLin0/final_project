@@ -1,9 +1,10 @@
 <template>
 		<div>
 			<div class="clear"></div>
-        <h2 class="title_news">
-            Latest news and events
-        </h2>
+
+          <h2 class="title_news">
+                Latest news and events
+            </h2>
         <div class="news">
             <div class="news1">
                 <div>
