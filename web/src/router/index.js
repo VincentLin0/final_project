@@ -49,7 +49,7 @@ const routes = [
   },
   {
     path: '/knowledge/:id',
-    name: 'content',
+    name: 'knowledge',
     component: ContentView
   },
   {
@@ -131,7 +131,7 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login' || to.path === '/signup' || to.path === '/' || to.path === '/search'|| to.path === '/result/' ) {
+  if (to.path === '/login' || to.path === '/signup' || to.path === '/' || to.path === '/search'|| to.path === '/result/'|| to.path === '/knowledge/' ) {
                                                                                              
     next();
   } else {
