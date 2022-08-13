@@ -3,7 +3,6 @@ package com.mastercs.demo.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 @Table(name = "question")
@@ -14,10 +13,15 @@ public class Question {
 
     @NotBlank
     @Size(max = 500)
+    @Column(name = "question_title")
     private String questionTitle;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
-//    private List<Options> options;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "audio")
+    private String audio;
 
     public Long getId() {
         return id;
@@ -37,13 +41,20 @@ public class Question {
         this.questionTitle = questionTitle;
     }
 
-//    public List<Options> getOptions() {
-//        return options;
-//    }
-//
-//    public void setOptions(List<Options> options) {
-//        this.options = options;
-//    }
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getAudio() {
+        return audio;
+    }
+
+    public void setAudio(String audio) {
+        this.audio = audio;
+    }
 }
 

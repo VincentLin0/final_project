@@ -11,6 +11,7 @@ import com.mastercs.demo.repository.UserQuestionRepository;
 import com.mastercs.demo.repository.UserRepository;
 import com.mastercs.demo.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,11 @@ public class UserController {
     @Autowired
     QuestionRepository questionRepository;
 
+    @Value("${file-path}")
+    private String filePath;
 
+
+    //user answer questions
     @PostMapping
     public Result<?> userAccess(@RequestParam Long id, @RequestBody QuizDto quizRequest, HttpServletRequest request) {
         Question question = questionRepository.findQuestionById(id);
@@ -75,6 +80,8 @@ public class UserController {
         return Result.success(new QuizResponse(username,correctAnswer,true));
     }
 
+
+    //get question by id
     @PostMapping("/question")
     public Result<?> getQuestion(@RequestBody QuizDto quizDto)
     {
@@ -92,21 +99,22 @@ public class UserController {
             optionsList.add(n.getOptionTitle());
         }
 
-        return Result.success(new QuestionResponse(optionsList,question.getQuestionTitle()));
+        return Result.success(new QuestionResponse(optionsList,modifyPath(question)));
     }
 
 
+    //get all question
     @GetMapping("/list-of-quiz")
     public Result<?> showQuizList()
     {
         List<Question> questionList = quizRepository.findAll();
-        List<Long> questionTitleList = new ArrayList<>();
+        List<Long> questionIdList = new ArrayList<>();
 
         for (Question question:questionList)
         {
-            questionTitleList.add(question.getId());
+            questionIdList.add(question.getId());
         }
-        return Result.success(questionTitleList);
+        return Result.success(questionIdList);
     }
 
     @Transactional
@@ -148,6 +156,19 @@ public class UserController {
         }
         userQuestionRepository.deleteAllByUser(user);
         return Result.success("Deleted user_question data successfully!");
+    }
+
+    private Question modifyPath(Question question)
+    {
+        if (question.getImage() != null)
+        {
+            question.setImage(filePath+question.getImage());
+        }
+        if (question.getAudio() != null)
+        {
+            question.setAudio(filePath+question.getAudio());
+        }
+        return question;
     }
 
 }
