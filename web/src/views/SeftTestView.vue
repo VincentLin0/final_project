@@ -32,7 +32,7 @@ export default {
 
 }
 .mainTest{
-  min-height: 420px;
+  min-height: 500px;
 }
 .bottom{
   width: 100%;

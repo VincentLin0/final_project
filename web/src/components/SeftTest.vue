@@ -1,7 +1,16 @@
 <template>
   <div class="self_test">
+    <div class="question">{{dataInfo.question.questionTitle}}</div>
+    <div class="image">
+  <div>
+      <el-image
+      style="width: 445px; height: 250px"
+      :src= dataInfo.question.image
+      ></el-image>
+  </div>
 
-    <div class="question">{{dataInfo.question}}</div>
+      <Aplayer v-if="dataInfo.question.audio!=null" class="audio-player" :music="audioPlayerData"></Aplayer>
+</div>
 <template>
   <!-- <el-radio-group class="options" v-model="radio" >
     <el-radio class="option1" :label="3">{{dataInfo.options[0]}}</el-radio>
@@ -23,13 +32,20 @@
 <script>
 import { Loading } from 'element-ui'
 import request from '../utils/request'
+import Aplayer from 'vue-aplayer'
 
 export default {
   name: 'self_test',
+    components: {
+    Aplayer
+  },
   data () {
     return {
       dataInfo:{
-        options:[]
+        options:[],
+        question:{
+          questionTite:''
+        }
 		},
       questionInfo:[],		
       answerInfo:{
@@ -39,7 +55,9 @@ export default {
       id:9,
       num:0,
       last:0,
-
+    
+      audioPlayerData: {}
+       
     }
   },
   methods: {
@@ -67,6 +85,13 @@ export default {
             this.dataInfo = list.data
             console.log("问题是"+this.dataInfo.question)
           console.log("选项是"+this.dataInfo.options[0])
+          console.log("audio是",this.dataInfo.question.audio)
+              this.audioPlayerData = {
+              title: 'audio',
+              artist: 'question',
+              src: this.dataInfo.question.audio,
+              pic: 'http://176.58.99.74:8888/view?relativePath=2022/08/14/7ad3f443-21fd-4fe1-8563-97d90d2a593b.svg'
+              }
           })
           // 指定发生错误时的回调函数
           .catch((failResponse) => {
@@ -293,13 +318,20 @@ export default {
 	
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.audio-player{
+  width: 60%;
+}
+.image{
+  margin-left: 15%;
+  margin-top: 20px;
+}
 .question{
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 15%;
   font-size: 150%
 }
 .options{
-  margin-top: 80px;
+  margin-top: 30px;
   margin-left: 15%;
   font-size: 120%;
 

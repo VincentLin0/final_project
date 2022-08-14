@@ -11,7 +11,7 @@
             <el-button class="ml-5" type="primary" @click="search">search</el-button>-->
             <!-- <el-button class="ml-5" type="primary" @click="createDrawer">new</el-button> -->
             <!-- <el-button type="warning" @click="resetForm">rewrite</el-button> -->
-            <el-button type="warning" :disabled="delArr.length>0?false:true" @click="delAll">delete all</el-button>
+            <!-- <el-button type="warning" :disabled="delArr.length>0?false:true" @click="delAll">delete all</el-button> -->
           <!-- </div> -->
 
           <el-table

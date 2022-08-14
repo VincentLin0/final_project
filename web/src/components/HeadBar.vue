@@ -1,7 +1,7 @@
 <template>
   <div class="navigation_whole">
 <!--    {{userInfo}}-->
-    <img src="../assets/img/logo1.png" alt="cannot show" class="logo1">
+    <img src="../assets/img/logo0.png" alt="cannot show" class="logo1">
     <span class="navigation">
       <span @click="home" class="nav1">Home</span>
       <span v-if = "isShow == false" @click="login"  class="nav3" >Log in</span> 
@@ -125,7 +125,7 @@ export default {
 <style scoped>
 			.navigation_whole {
 				/* width: content; */
-            height: 6em;
+            height: 10em;
 				background-color:rgb(80,130,241)
         }
 
@@ -135,7 +135,7 @@ export default {
             line-height: 109px;
             float: right;
             margin-right: 2em;	
-
+            margin-top: 1.2em;
         }
         .nav1{
             margin-left: 10px;
@@ -158,8 +158,8 @@ export default {
 				text-decoration: none;
       }
         .logo1 {
-            width: 4em;
-            height: 4em;
+            width: 8em;
+            height: 8em;
             line-height: 109px;
             position: relative;
             left: 4%;
