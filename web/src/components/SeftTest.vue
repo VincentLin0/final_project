@@ -83,9 +83,9 @@ export default {
             console.log(successResponse) // 数组，所有符合条件的结果数组
             let list = successResponse
             this.dataInfo = list.data
-            console.log("问题是"+this.dataInfo.question)
-          console.log("选项是"+this.dataInfo.options[0])
-          console.log("audio是",this.dataInfo.question.audio)
+            console.log("问题是0"+this.dataInfo.question)
+          console.log("选项是0"+this.dataInfo.options[0])
+          console.log("audio是0",this.dataInfo.question.audio)
               this.audioPlayerData = {
               title: 'audio',
               artist: 'question',
@@ -110,14 +110,22 @@ export default {
           // .then意思是指定回调函数
           .then((successResponse) => {
             loadingInstance.close();
-            console.log(successResponse) // 数组，所有符合条件的结果数组
+            console.log("aaaa",successResponse) // 数组，所有符合条件的结果数组
             let list = successResponse
             this.dataInfo = list.data
-            console.log("问题是"+this.dataInfo.question)
-          console.log("选项是"+this.dataInfo.options[0])
+            console.log("问题是1"+this.dataInfo.question.questionTitle)
+          console.log("选项是1"+this.dataInfo.options[0])
+          console.log("音频是1"+this.dataInfo.question.audio)
+        this.audioPlayerData = {
+              title: 'audio',
+              artist: 'question',
+              src: this.dataInfo.question.audio,
+              pic: 'http://176.58.99.74:8888/view?relativePath=2022/08/14/7ad3f443-21fd-4fe1-8563-97d90d2a593b.svg'
+              }
           })
           // 指定发生错误时的回调函数
           .catch((failResponse) => {
+            
             console.log(failResponse)
           })
 
@@ -220,11 +228,13 @@ export default {
       next_question(){
         this.num= this.num+1
         this.id = this.questionInfo[this.num]
+        
         console.log("下一题是"+this.id)
         this.get_QandA()
         this.radio= ''
-        if(this.data!= null){
-        this.$forceUpdate() }
+        
+        this.$forceUpdate() 
+
         // this.$router.go(0);
         // request.post("users/quiz/add-questions",{question:"aaa",options:["4","5","6"],answer:"4"})
       },
@@ -246,8 +256,7 @@ export default {
       },
 
       open() {
-        console.log(this.answerInfo.right)
-        console.log(this.answerInfo.answer)
+
         if(this.num<this.last){
         if(this.answerInfo.right === true){
         this.$alert('the answer is right', 'Result', {
