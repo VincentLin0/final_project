@@ -60,7 +60,7 @@ request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
     config.headers['Authorization'] = localStorage.getItem("Authorization");
     // config.headers['Set-Cookie'] = localStorage.getItem("Set-Cookie");
-    config.headers['token'] = localStorage.getItem("token");  // 设置请求头
+    config.headers['token'] = localStorage.getItem("token");  
     return config
 }, error => {
     return Promise.reject(error)

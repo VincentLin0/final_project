@@ -98,7 +98,7 @@ export default {
 
 .Rtitle {
   display: block;
-  width: 560px;
+  width: 55%;
   height: 22px;
   margin-bottom: 4px;
   text-decoration: none;
@@ -133,7 +133,7 @@ export default {
 
 .des-text1 {
   position: relative;
-  margin-left: 40%;
+  margin-left: 70%;
   top: -130px;
   width: 416px;
   font-size: 18px;
@@ -184,7 +184,7 @@ export default {
 
   .des-text1 {
     position: relative;
-    margin-left: 50%;
+    margin-left: 70%;
     top: -130px;
     width: 416px;
     font-size: 18px;
@@ -222,7 +222,7 @@ export default {
 
   .Rtitle {
     display: block;
-    width: 560px;
+    width: 100%;
     height: 22px;
     margin-bottom: 4px;
     text-decoration: none;
@@ -265,6 +265,7 @@ export default {
     color: #333;
     width: 90%;
     word-wrap:break-word;
+    /* margin-top: 40px; */
     /* background-color: #315efb; */
   }
 
@@ -307,7 +308,7 @@ export default {
 
   .Rtitle {
     display: block;
-    width: 560px;
+    width: 55%;
     height: 22px;
     margin-bottom: 4px;
     text-decoration: none;

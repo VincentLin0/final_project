@@ -22,7 +22,7 @@
             <!-- 给img的src绑定数据要用v-bind -->
             <img :src='searchResult.pic1'/>
           </div>
-          <div class="des-text1">
+          <div class="des-text0">
             {{ searchResult.description }}
           </div>
         </div>
@@ -42,8 +42,8 @@
     <button>下一页</button>
     </div> -->
 
-    <div class="center" ><CustomPages @size-change="handleSizeChange" @current-change="handleCurrentChange" :currentPage="pageInfo.pageNum"
-                 :total="pageInfo.total" :pageSize="pageInfo.pageSize"></CustomPages></div>
+    <!-- <div class="center" ><CustomPages @size-change="handleSizeChange" @current-change="handleCurrentChange" :currentPage="pageInfo.pageNum"
+                 :total="pageInfo.total" :pageSize="pageInfo.pageSize"></CustomPages></div> -->
 
   </div>
 </template>
@@ -146,10 +146,13 @@ export default {
   font-size: 13px;
   color: #999999;
 }
+/* .image{
+  width: 100%;
 
+} */
 .Rtitle {
   display: block;
-  width: 560px;
+  width: 55%;
   height: 22px;
   margin-bottom: 4px;
   text-decoration: none;
@@ -174,7 +177,7 @@ export default {
 }
 
 .description img {
-  width: 25%;
+  width: 60%;
   margin-top: 20px;
   margin-left: 0%;
   border: 1px solid #f2f2f2;
@@ -182,9 +185,9 @@ export default {
 }
 
 
-.des-text1 {
+.des-text0 {
   position: relative;
-  margin-left: 40%;
+  margin-left: 70%;
   top: -130px;
   width: 416px;
   height: auto;
@@ -227,16 +230,16 @@ export default {
   }
 
   .description img {
-    width: 25%;
+    width: 60%;
     margin-top: 20px;
     margin-left: 0%;
     border: 1px solid #f2f2f2;
     border-radius: 15px;
   }
 
-  .des-text1 {
+  .des-text0 {
     position: relative;
-    margin-left: 50%;
+    margin-left: 70%;
     top: -130px;
     width: 416px;
     font-size: 18px;
@@ -276,7 +279,7 @@ export default {
 
   .Rtitle {
     display: block;
-    width: 560px;
+    width: 100%;
     height: 22px;
     margin-bottom: 4px;
     text-decoration: none;
@@ -301,7 +304,7 @@ export default {
   }
 
   .description img {
-    width: 25%;
+    width: 60%;
     margin-top: 20px;
     margin-left: 0%;
     border: 1px solid #f2f2f2;
@@ -310,7 +313,7 @@ export default {
   }
 
 
-  .des-text1 {
+  .des-text0 {
     position: relative;
     margin-left: 0%;
     top: 10px;
@@ -319,6 +322,7 @@ export default {
     color: #333;
     width: 90%;
     word-wrap:break-word;
+    /* margin-top: 0px; */
     /* background-color: #315efb; */
   }
 
@@ -364,7 +368,7 @@ export default {
 
   .Rtitle {
     display: block;
-    width: 560px;
+    width: 55%;
     height: 22px;
     margin-bottom: 4px;
     text-decoration: none;
@@ -389,7 +393,7 @@ export default {
   }
 
   .description img {
-    width: 25%;
+    width: 60%;
     margin-top: 20px;
     margin-left: 0%;
     border: 1px solid #f2f2f2;
@@ -398,7 +402,7 @@ export default {
   }
 
 
-  .des-text1 {
+  .des-text0 {
     position: relative;
     margin-left: 0%;
     top: 10px;

@@ -74,6 +74,7 @@ export default {
       })
           .then((successResponse) => {
             if (successResponse.code === "200") {
+              console.log(successResponse)
               this.$message.success("Add collection successfully")
               this.searchContent()
             }
