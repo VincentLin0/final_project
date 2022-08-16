@@ -22,7 +22,7 @@
       <div>
         <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
         <div class="center"><button class= "Login" @click="login">Log in</button></div>
-        <div class="center"><button class= "Register" @click="regist">Register</button></div>
+        <div class="center"><button class= "Register1" @click="regist">Sign up</button></div>
       </div>
     </div>
     </div>
@@ -228,7 +228,7 @@ export default {
   cursor:pointer;
 }
 
-.Register{
+.Register1{
   width: 364px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -328,7 +328,7 @@ export default {
   cursor:pointer;
 }
 
-.Register{
+.Register1{
   width: 220px;
   height: 53px;
   background-color: rgb(95,170,63);
@@ -393,7 +393,7 @@ export default {
   cursor:pointer;
 }
 
-.Register{
+.Register1{
   width: 200px;
   height: 53px;
   background-color: rgb(95,170,63);

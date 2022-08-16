@@ -45,6 +45,8 @@
 import axios from 'axios'
 import Element from "element-ui"
 
+
+
 const request = axios.create({
     baseURL: process.env.VUE_APP_SERVER,  // 注意！！ 这里是全局统一加上了 后端接口前缀 前缀，后端必须进行跨域配置！
     
@@ -53,6 +55,7 @@ const request = axios.create({
 // request 拦截器
 // 可以自请求发送前对请求做一些处理
 // 比如统一加token，对请求参数统一加密
+
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
     config.headers['Authorization'] = localStorage.getItem("Authorization");
@@ -66,14 +69,16 @@ request.interceptors.request.use(config => {
 // response 拦截器
 // 可以在接口响应后统一处理结果
 request.interceptors.response.use(
+
     response => {
         let res = response.data;
+        
         // 如果是返回的文件
         if (response.config.responseType === 'blob') {
             return res
         }
-        console.log(response.data)
-        if(response.data.code==="500"||response.data.code==="400"){
+        console.log("abc",response.data)
+        if(response.data.code==="500"||response.data.code==="400"||response.data.code==="401"){
             Element.Message.error(response.data.msg)
             return Promise.reject(response.data.msg)
         }
@@ -85,7 +90,26 @@ request.interceptors.response.use(
         return res;
     },
     error => {
-        console.log('err' + error) // for debug
+        
+        if(error.response.data.code==="400"){
+            error.response.data.msg="Login failed. Please log in again~"
+            Element.Message.error(error.response.data.msg)
+            
+        }
+        if(error.response.data.code==="403"){
+            error.response.data.msg="Insufficient permission, please use the administrator account login"
+            Element.Message.error(error.response.data.msg)
+            
+        }
+        if(error.response.data.code==="405"){
+            Element.Message.error(error.response.data.msg)
+            
+        }
+        if(error.response.data.code==="500"){
+            Element.Message.error(error.response.data.msg)
+            
+        }
+        console.log("error" ,error.response.data.code) // for debug
         return Promise.reject(error)
     }
 )

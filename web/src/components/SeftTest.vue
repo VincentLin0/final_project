@@ -318,7 +318,6 @@ export default {
 
   created(){
       this.get_all_question()
-      
       },
 
 }

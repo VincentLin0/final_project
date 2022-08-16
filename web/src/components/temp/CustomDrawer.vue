@@ -13,7 +13,7 @@
     >
       <div class="demo-drawer__content">
         <el-form :model="formData" :rules="rulesForm" ref="formData" label-width="100px" class="demo-ruleForm">
-          <slot name="content">这里是中间</slot>
+          <slot name="content">middle</slot>
         </el-form>
         <div class="demo-drawer__footer">
           <el-button @click="cancelForm('formData')">cancle</el-button>
