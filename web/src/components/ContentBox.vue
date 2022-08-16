@@ -74,7 +74,6 @@ export default {
       })
           .then((successResponse) => {
             if (successResponse.code === "200") {
-              console.log(successResponse)
               this.$message.success("Add collection successfully")
               this.searchContent()
             }
@@ -89,7 +88,7 @@ export default {
               title: 'default',
               artist: 'default',
               src: successResponse.data.audio,
-              pic: ''
+              pic: 'http://176.58.99.74:8888/view?relativePath=2022/08/14/7ad3f443-21fd-4fe1-8563-97d90d2a593b.svg'
             }
             setTimeout(()=>{
               this.isAuduiShow = true

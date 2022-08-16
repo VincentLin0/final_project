@@ -87,7 +87,18 @@ public class SearchController {
         LambdaQueryWrapper<Knowledge> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.orderByDesc(Knowledge::getId);
         Page<Knowledge> page = knowledgeService.page(new Page<>(requestSearch.getPageNum(), requestSearch.getPageSize()), queryWrapper);
-        return Result.success(page);
+        Page<KnowledgeDTO> returnPage = new Page<>();
+        BeanUtil.copyProperties(page, returnPage);
+        List<Knowledge> records = page.getRecords();
+        List<KnowledgeDTO> list = new ArrayList<>();
+        records.forEach(u -> {
+            KnowledgeDTO knowledgeDTO = new KnowledgeDTO();
+            Knowledge knowledge = setCoverUrl(u);
+            BeanUtil.copyProperties(knowledge, knowledgeDTO);
+            list.add(knowledgeDTO);
+        });
+        returnPage.setRecords(list);
+        return Result.success(returnPage);
     }
 
     @PostMapping("/save")

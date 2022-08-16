@@ -94,12 +94,10 @@ request.interceptors.response.use(
         if(error.response.data.code==="400"){
             error.response.data.msg="Login failed. Please log in again~"
             Element.Message.error(error.response.data.msg)
-            
         }
         if(error.response.data.code==="403"){
             error.response.data.msg="Insufficient permission, please use the administrator account login"
             Element.Message.error(error.response.data.msg)
-            
         }
         if(error.response.data.code==="405"){
             Element.Message.error(error.response.data.msg)

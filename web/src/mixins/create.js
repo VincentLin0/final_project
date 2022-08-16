@@ -142,7 +142,9 @@ const create = {
         },
         getList() {
             request.post(this.api.listUrl, this.searchMerge).then(res => {
+                console.log("jjj",res)
                 this.tableData = res.data.records
+                this.searchResults = res.data.records
                 this.pageInfo.total = res.data.total
             })
         },

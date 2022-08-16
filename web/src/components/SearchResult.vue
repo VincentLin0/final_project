@@ -42,9 +42,8 @@
     <button>下一页</button>
     </div> -->
 
-    <!-- <div class="center" ><CustomPages @size-change="handleSizeChange" @current-change="handleCurrentChange" :currentPage="pageInfo.pageNum"
-                 :total="pageInfo.total" :pageSize="pageInfo.pageSize"></CustomPages></div> -->
-
+    <div class="center" ><CustomPages @size-change="handleSizeChange" @current-change="handleCurrentChange" :currentPage="pageInfo.pageNum"
+                 :total="pageInfo.total" :pageSize="pageInfo.pageSize"></CustomPages></div>
   </div>
 </template>
 
@@ -60,11 +59,13 @@ export default {
   name: 'searchResult',
   data() {
     return {
-
-
       searchContent: '',
-
-      searchResults: []
+      searchResults: [],
+      api:{
+        listUrl:"/page",
+        saveUrl:"/save",
+        delUrl:"/delBatch",
+      },
     }
   },
   components: {
@@ -88,13 +89,14 @@ export default {
             let list = successResponse.data.records
             this.pageInfo.total = successResponse.data.total
             this.searchResults = list
-            console.log(this.searchResults)
+            console.log("jieguo",this.searchResults)
             if (successResponse.length === 0) {
               this.open3()
             }
           })
 
     },
+    
     open3() {
       this.$message({
         message: 'Sorry, this keyword was not found.',
@@ -178,6 +180,7 @@ export default {
 
 .description img {
   width: 60%;
+  height: 90px;
   margin-top: 20px;
   margin-left: 0%;
   border: 1px solid #f2f2f2;
