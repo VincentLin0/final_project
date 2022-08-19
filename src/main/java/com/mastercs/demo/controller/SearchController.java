@@ -101,28 +101,6 @@ public class SearchController {
         return Result.success(returnPage);
     }
 
-    @PostMapping("/save")
-    public Result<?> save(@RequestBody Knowledge knowledge) {
-        knowledgeService.saveOrUpdate(knowledge);
-        return Result.success();
-    }
-
-    @PostMapping("/delBatch")
-    public Result<?> deleteBatch(@RequestBody List<Integer> ids, HttpServletRequest request) {
-        Integer userId = JwtUtils.getUserId(request);
-        knowledgeService.removeByIds(ids);
-        for (Integer id : ids) {
-            LambdaQueryWrapper<FavorRecords> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(FavorRecords::getKnowledgeId, id)
-                    .eq(FavorRecords::getUserId, userId)
-                    .last("limit 1");
-            FavorRecords favorRecords = favorRecordsMapper.selectOne(wrapper);
-            if (favorRecords != null) {
-                favorRecordsMapper.deleteById(favorRecords.getId());
-            }
-        }
-        return Result.success();
-    }
 
     @GetMapping("/queryById")
     public Result<?> queryById(@RequestParam("id") Integer id, HttpServletRequest request) {
