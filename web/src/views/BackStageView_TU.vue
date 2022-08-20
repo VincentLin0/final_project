@@ -7,28 +7,28 @@
 </template>
 
 <script>
-import HeadBar from '../components/HeadBar.vue'
-import BottomBar from '../components/BottomBar.vue'
-import BackStage_TU from '../components/BackStage_TU.vue'
+import HeadBar from "../components/HeadBar.vue";
+import BottomBar from "../components/BottomBar.vue";
+import BackStage_TU from "../components/BackStage_TU.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HeadBar,
 
     BottomBar,
     BackStage_TU,
     // AccountBox
-  }
-}
+  },
+};
 </script>
 
 <style>
 #app {
 }
-.bottom{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-  }
+.bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 </style>

@@ -8,13 +8,13 @@
 
 <script>
 // import {HeadBar,BottomBar,SlideShow,NewBox,AccountBox} from '../components/index.js'
-import HeadBar from '../components/HeadBar.vue'
-import BottomBar from '../components/BottomBar.vue'
-import BackStage_CM from '../components/BackStage_CM.vue'
-// import AccountBox from '../components/AccountBox.vue'
+import HeadBar from "../components/HeadBar.vue"
+import BottomBar from "../components/BottomBar.vue"
+import BackStage_CM from "../components/BackStage_CM.vue"
+// import AccouƒntBox from '../components/AccountBox.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HeadBar,
 

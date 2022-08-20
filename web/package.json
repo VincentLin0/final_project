@@ -7,7 +7,11 @@
     "serve-prod": "vue-cli-service serve --mode prod",
     "build-dev": "vue-cli-service build --mode dev",
     "build-prod": "vue-cli-service build --mode prod",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev-eslint": "npm run lint vue-cli-service serve --open",
+    "build-eslint": "npm run lint vue-cli-service build",
+    "lint": "eslint --ext .js --ext .vue src",
+    "lint-fix": "eslint --fix --ext .js,.vue src"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -28,9 +32,10 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
+    "eslint-plugin-vue": "^8.7.1",
     "less": "^4.0.0",
     "less-loader": "^8.0.0",
+    "vue-eslint-parser": "^9.0.3",
     "vue-template-compiler": "^2.6.14"
   }
 }

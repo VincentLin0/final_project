@@ -1,98 +1,99 @@
 <template lang="">
-  <div class = "box">
+  <div class="box">
+    <HeadBar></HeadBar>
 
-<HeadBar></HeadBar>
+    <div class="search">
+      <select class="d6">
+        <option value="">Listes</option>
+        <option value="2">Listes1</option>
+        <option value="3">Listes2</option>
+      </select>
+      <input
+        type="search"
+        v-model="searchContent"
+        placeholder="Type in something."
+      />
+      <div @click="search" class="sea"></div>
+      <!-- <router-link class="search_box" :to="'/result?' + searchContent" ><div  class="sea"></div></router-link> -->
+    </div>
+    <div class="list">
+      <p class="title1">Lists of Animals</p>
+      <hr />
+      <br />
+      <div class="listleft">
+        <li class="listtitle">Class1</li>
+        <li @click="content" class="listfont">animal1</li>
+        <li class="listfont">animal2</li>
+        <li class="listfont">animal3</li>
+        <br />
+        <li class="listtitle">Class3</li>
+        <li class="listfont">animal1</li>
+        <li class="listfont">animal2</li>
+        <li class="listfont">animal3</li>
+      </div>
+      <div class="listright">
+        <li class="listtitle">Class2</li>
+        <li class="listfont">animal1</li>
+        <li class="listfont">animal2</li>
+        <li class="listfont">animal3</li>
+        <br />
+        <li class="listtitle">Class4</li>
+        <li class="listfont">animal1</li>
+        <li class="listfont">animal2</li>
+        <li class="listfont">animal3</li>
+      </div>
+      <hr />
+    </div>
+    <div class="latest">
+      <p class="title1">Latest Updates</p>
+      <hr />
+      <br />
+      <h3 class="lattitle">Title</h3>
+      <p>The content.The content.The content.</p>
+      <p>The content.</p>
+      <p class="lattime">2022/04/11 | 50 Comments</p>
+      <br /><br />
+      <h3 class="lattitle">Title</h3>
+      <p>The content.The content.The content.</p>
+      <p>The content.</p>
+      <p class="lattime">2022/04/11 | 50 Comments</p>
+      <br />
+      <hr />
+    </div>
 
-    <div class="search">		
-				<select class="d6">		
-					<option value="">Listes</option>
-					<option value="2">Listes1</option>
-					<option value="3">Listes2</option>
-				</select>
-				<input type="search" v-model="searchContent" placeholder="Type in something.">	
-				<div @click="search" class="sea"></div>
-				<!-- <router-link class="search_box" :to="'/result?' + searchContent" ><div  class="sea"></div></router-link> -->
-			</div>
-			<div class="list">			
-				<p class="title1">Lists of Animals</p>
-				<hr>	
-				<br>	
-				<div class="listleft">		
-					<li class="listtitle">Class1</li>
-					<li @click= "content" class="listfont">animal1</li>
-					<li class="listfont">animal2</li>
-					<li class="listfont">animal3</li>
-					<br>	
-					<li class="listtitle">Class3</li>
-					<li class="listfont">animal1</li>
-					<li class="listfont">animal2</li>
-					<li class="listfont">animal3</li>
-				</div>
-				<div class="listright">		
-					<li class="listtitle">Class2</li>
-					<li class="listfont">animal1</li>
-					<li class="listfont">animal2</li>
-					<li class="listfont">animal3</li>
-					<br>
-					<li class="listtitle">Class4</li>
-					<li class="listfont">animal1</li>
-					<li class="listfont">animal2</li>
-					<li class="listfont">animal3</li>
-				</div>
-				<hr>
-			</div>
-			<div class="latest">		
-				<p class="title1">Latest Updates</p>
-				<hr><br>
-				<h3 class="lattitle">Title</h3>
-				<p>The content.The content.The content.</p>
-				<p>The content.</p>
-				<p class="lattime">2022/04/11 | 50 Comments</p>
-				<br><br>
-				<h3 class="lattitle">Title</h3>
-				<p>The content.The content.The content.</p>
-				<p>The content.</p>
-				<p class="lattime">2022/04/11 | 50 Comments</p>
-				<br><hr>
-			</div>
-
-        <BottomBar></BottomBar>
-
+    <BottomBar></BottomBar>
   </div>
-
 </template>
 <script>
-import HeadBar from '../components/HeadBar.vue'
-import BottomBar from '../components/BottomBar.vue'
-
+import HeadBar from "../components/HeadBar.vue";
+import BottomBar from "../components/BottomBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HeadBar,
     BottomBar,
-
   },
   data() {
     return {
-      searchContent: ''
-    }
+      searchContent: "",
+    };
   },
 
   methods: {
     content() {
-      this.$router.push('/content');
+      this.$router.push("/content");
     },
     search() {
-      if (this.searchContent != '') {
+      if (this.searchContent != "") {
         this.$router.push({
-          path: '/result/',
-          query: {searchContent: this.searchContent}
-        })
+          path: "/result/",
+          query: {searchContent: this.searchContent},
+        });
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
@@ -136,7 +137,6 @@ input {
   background-image: url(../assets/img/sea.png);
   background-repeat: no-repeat;
   cursor: pointer;
-
 }
 
 .list {
@@ -184,7 +184,6 @@ input {
 
 .lattitle {
   color: black;
-
 }
 
 .latest {
@@ -192,17 +191,13 @@ input {
   width: 63.2%;
   position: relative;
   top: 5em;
-
 }
 
 .latest p {
   line-height: 1em;
-
 }
 
 .lattime {
   color: gainsboro;
 }
-
 </style>
-

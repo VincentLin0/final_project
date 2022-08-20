@@ -5,17 +5,19 @@
     <!-- {{ searchContent }} -->
     <ul class="results">
       <li
-          class="result-content"
-          v-for="item in collectionResults"
-          :key="item.id"
+        class="result-content"
+        v-for="item in collectionResults"
+        :key="item.id"
       >
-        <router-link class="Rtitle" :to="'/knowledge/' + item.id">{{ item.title }}</router-link>
+        <router-link class="Rtitle" :to="'/knowledge/' + item.id">{{
+          item.title
+        }}</router-link>
 
         <!-- 如果返回的图片地址不为空，有图片盒子，文字盒子样式为des-text1 -->
         <div class="description" v-if="item.pic1 != null">
           <div class="image">
             <!-- 给img的src绑定数据要用v-bind -->
-            <img :src='item.pic1'/>
+            <img :src="item.pic1" />
           </div>
           <div class="des-text1">
             {{ item.description }}
@@ -29,39 +31,37 @@
         </div>
       </li>
     </ul>
-
   </div>
 </template>
 
 <script>
-import request from '../utils/request'
+import request from "../utils/request";
 export default {
-  name: 'searchResult',
+  name: "searchResult",
   data() {
     return {
-      searchContent: '',
-      collectionResults: []
-    }
+      searchContent: "",
+      collectionResults: [],
+    };
   },
   components: {
     // AccountBox
   },
   methods: {
     search() {
-      request.get("/collectList")
-          // .then意思是指定回调函数
-          .then((successResponse) => {
-            console.log(successResponse)
-            this.collectionResults = successResponse.data
-
-          })
-    }
+      request
+        .get("/collectList")
+        // .then意思是指定回调函数
+        .then((successResponse) => {
+          console.log(successResponse);
+          this.collectionResults = successResponse.data;
+        });
+    },
   },
   created() {
-    this.search()
-  }
-}
-
+    this.search();
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -130,7 +130,6 @@ export default {
   border-radius: 15px;
 }
 
-
 .des-text1 {
   position: relative;
   margin-left: 70%;
@@ -138,7 +137,7 @@ export default {
   width: 416px;
   font-size: 18px;
   color: #333;
-  word-wrap:break-word;
+  word-wrap: break-word;
   /* background-color: #315efb; */
 }
 
@@ -149,7 +148,7 @@ export default {
   font-size: 13px;
   color: #333; */
   margin-top: 20px;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 @media screen and (min-width: 900px) and (max-width: 1440px) {
@@ -189,7 +188,7 @@ export default {
     width: 416px;
     font-size: 18px;
     color: #333;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 }
@@ -255,7 +254,6 @@ export default {
     display: none;
   }
 
-
   .des-text1 {
     position: relative;
     margin-left: 0%;
@@ -264,7 +262,7 @@ export default {
     font-size: 18px;
     color: #333;
     width: 90%;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* margin-top: 40px; */
     /* background-color: #315efb; */
   }
@@ -276,7 +274,7 @@ export default {
     font-size: 13px;
     color: #333; */
     margin-top: 20px;
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 }
 
@@ -341,7 +339,6 @@ export default {
     display: none;
   }
 
-
   .des-text1 {
     position: relative;
     margin-left: 0%;
@@ -349,7 +346,7 @@ export default {
     width: 416px;
     font-size: 18px;
     color: #333;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 
@@ -360,8 +357,7 @@ export default {
     font-size: 13px;
     color: #333; */
     margin-top: 20px;
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 }
-
 </style>

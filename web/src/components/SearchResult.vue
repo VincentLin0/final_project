@@ -1,26 +1,28 @@
 <template>
   <div class="Box">
-
     <div class="BreadcrumbNavgation">
       <BreadcrumbNavgation></BreadcrumbNavgation>
     </div>
-    <div class="result-num">the following are {{ this.$route.query.searchContent }} relevant results</div>
+    <div class="result-num">
+      the following are {{ this.$route.query.searchContent }} relevant results
+    </div>
     {{ searchContent }}
 
     <ul class="results">
       <li
-          class="result-content"
-          v-for="searchResult in searchResults"
-          :key="searchResult.id"
+        class="result-content"
+        v-for="searchResult in searchResults"
+        :key="searchResult.id"
       >
-
-        <router-link class="Rtitle" :to="'/knowledge/' + searchResult.id">{{ searchResult.title }}</router-link>
+        <router-link class="Rtitle" :to="'/knowledge/' + searchResult.id">{{
+          searchResult.title
+        }}</router-link>
 
         <!-- 如果返回的图片地址不为空，有图片盒子，文字盒子样式为des-text1 -->
         <div class="description" v-if="searchResult.pic1 !== null">
           <div class="image">
             <!-- 给img的src绑定数据要用v-bind -->
-            <img :src='searchResult.pic1'/>
+            <img :src="searchResult.pic1" />
           </div>
           <div class="des-text0">
             {{ searchResult.description }}
@@ -35,88 +37,92 @@
         <!-- <el-button @click="collect(searchResult.id)" :type="searchResult.isCollect?'primary':'none'"
                    icon="el-icon-star-off" circle> </el-button> -->
         <!-- {{ searchResult.isCollect ? "cancel collect" : "collect" }} -->
-
       </li>
     </ul>
     <!-- <div><button>上一页</button>
     <button>下一页</button>
     </div> -->
 
-    <div class="center" ><CustomPages @size-change="handleSizeChange" @current-change="handleCurrentChange" :currentPage="pageInfo.pageNum"
-                 :total="pageInfo.total" :pageSize="pageInfo.pageSize"></CustomPages></div>
+    <div class="center">
+      <CustomPages
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :currentPage="pageInfo.pageNum"
+        :total="pageInfo.total"
+        :pageSize="pageInfo.pageSize"
+      ></CustomPages>
+    </div>
   </div>
 </template>
 
 <script>
-import request from '../utils/request'
-import BreadcrumbNavgation from '../components/breadcrumbNavigation.vue'
-import {Loading} from 'element-ui'
+import request from "../utils/request";
+import BreadcrumbNavgation from "../components/breadcrumbNavigation.vue";
+import {Loading} from "element-ui";
 
-import create from '@/mixins/create'
+import create from "@/mixins/create";
 
 export default {
   mixins: [create],
-  name: 'searchResult',
+  name: "searchResult",
   data() {
     return {
-      searchContent: '',
+      searchContent: "",
       searchResults: [],
-      api:{
-        listUrl:"/page",
-        saveUrl:"/save",
-        delUrl:"/delBatch",
+      api: {
+        listUrl: "/page",
+        saveUrl: "/save",
+        delUrl: "/delBatch",
       },
-    }
+    };
   },
   components: {
-    BreadcrumbNavgation
+    BreadcrumbNavgation,
     // AccountBox
   },
   methods: {
     search() {
-      request.post("/result", {
-        // 把 search 页面的 input 内容映射到 searchContent 变量中并发送给后端
-        searchContent: this.$route.query.searchContent,
-        pageNum: this.pageInfo.pageNum,
-        pageSize: this.pageInfo.pageSize
-      })
-          // .then意思是指定回调函数
-          .then((successResponse) => {
-            // successResponse.data[0].title：就是符合条件的搜索结果的标题。其他以此类推
-            // console.log(successResponse.data[0].title)
-            console.log("a", successResponse) // 数组，所有符合条件的结果数组
-            // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
-            let list = successResponse.data.records
-            this.pageInfo.total = successResponse.data.total
-            this.searchResults = list
-            console.log("jieguo",this.searchResults)
-            if (successResponse.length === 0) {
-              this.open3()
-            }
-          })
-
+      request
+        .post("/result", {
+          // 把 search 页面的 input 内容映射到 searchContent 变量中并发送给后端
+          searchContent: this.$route.query.searchContent,
+          pageNum: this.pageInfo.pageNum,
+          pageSize: this.pageInfo.pageSize,
+        })
+        // .then意思是指定回调函数
+        .then((successResponse) => {
+          // successResponse.data[0].title：就是符合条件的搜索结果的标题。其他以此类推
+          // console.log(successResponse.data[0].title)
+          console.log("a", successResponse); // 数组，所有符合条件的结果数组
+          // console.log(successResponse.data[0])  // 数组第一个，里面包含id title abstracts
+          let list = successResponse.data.records;
+          this.pageInfo.total = successResponse.data.total;
+          this.searchResults = list;
+          console.log("jieguo", this.searchResults);
+          if (successResponse.length === 0) {
+            this.open3();
+          }
+        });
     },
-    
+
     open3() {
       this.$message({
-        message: 'Sorry, this keyword was not found.',
-        type: 'warning'
+        message: "Sorry, this keyword was not found.",
+        type: "warning",
       });
     },
   },
   created() {
     let loadingInstance = Loading.service({fullscreen: true});
-    this.search()
+    this.search();
     loadingInstance.close();
-  }
-
-}
-
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
@@ -175,7 +181,6 @@ export default {
   top: 6px;
   width: 560px;
   height: 85px; */
-
 }
 
 .description img {
@@ -187,7 +192,6 @@ export default {
   border-radius: 15px;
 }
 
-
 .des-text0 {
   position: relative;
   margin-left: 70%;
@@ -196,7 +200,7 @@ export default {
   height: auto;
   font-size: 18px;
   color: #333;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 .des-text2 {
@@ -207,7 +211,7 @@ export default {
   color: #333; */
   /* width: 80%; */
   margin-top: 20px;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 @media screen and (min-width: 900px) and (max-width: 1440px) {
@@ -216,7 +220,6 @@ export default {
     width: 60%;
     margin-left: 7%;
     list-style: none;
-
   }
 
   .result-num {
@@ -247,7 +250,7 @@ export default {
     width: 416px;
     font-size: 18px;
     color: #333;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 }
@@ -315,7 +318,6 @@ export default {
     display: none;
   }
 
-
   .des-text0 {
     position: relative;
     margin-left: 0%;
@@ -324,7 +326,7 @@ export default {
     font-size: 18px;
     color: #333;
     width: 90%;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* margin-top: 0px; */
     /* background-color: #315efb; */
   }
@@ -357,7 +359,6 @@ export default {
     width: 60%;
     margin-left: 15%;
     list-style: none;
-
   }
 
   .result-num {
@@ -404,7 +405,6 @@ export default {
     display: none;
   }
 
-
   .des-text0 {
     position: relative;
     margin-left: 0%;
@@ -412,7 +412,7 @@ export default {
     width: 416px;
     font-size: 18px;
     color: #333;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 
@@ -423,8 +423,7 @@ export default {
     font-size: 13px;
     color: #333; */
     margin-top: 20px;
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 }
-
 </style>
