@@ -59,17 +59,6 @@ public class TutorialController {
         return Result.success(result);
     }
 
-    @PostMapping("/save")
-    public Result<?> save(@RequestBody Tutorial tutorial) {
-        tutorialService.saveOrUpdate(tutorial);
-        return Result.success();
-    }
-
-    @PostMapping("/delBatch")
-    public Result<?> deleteBatch(@RequestBody List<Integer> ids) {
-        tutorialService.removeByIds(ids);
-        return Result.success();
-    }
 
 
     @GetMapping("/queryById")

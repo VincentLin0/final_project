@@ -1,18 +1,27 @@
 package com.mastercs.demo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.mastercs.demo.bean.EnumOption;
 import com.mastercs.demo.bean.Options;
 import com.mastercs.demo.bean.Question;
+import com.mastercs.demo.bean.entity.FavorRecords;
+import com.mastercs.demo.bean.entity.Knowledge;
+import com.mastercs.demo.bean.entity.Tutorial;
 import com.mastercs.demo.config.Result;
+import com.mastercs.demo.mapper.FavorRecordsMapper;
 import com.mastercs.demo.payload.AdminAddDto;
 import com.mastercs.demo.payload.AdminDeleteDto;
 import com.mastercs.demo.payload.AllQuizResponse;
 import com.mastercs.demo.repository.OptionRepository;
 import com.mastercs.demo.repository.QuestionRepository;
 import com.mastercs.demo.repository.UserQuestionRepository;
+import com.mastercs.demo.services.KnowledgeService;
+import com.mastercs.demo.services.TutorialService;
+import com.mastercs.demo.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -21,7 +30,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/users/admin/quiz")
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -32,6 +41,12 @@ public class AdminController {
 
     @Autowired
     UserQuestionRepository userQuestionRepository;
+    @Autowired
+    KnowledgeService knowledgeService;
+    @Autowired
+    TutorialService tutorialService;
+    @Autowired
+    FavorRecordsMapper favorRecordsMapper;
 
     @GetMapping("")
     public String adminPage()
@@ -39,7 +54,7 @@ public class AdminController {
         return "welcome to admin page!";
     }
 
-    @PostMapping("/add-question")
+    @PostMapping("/quiz/add-question")
     public Result<?> adminAddQuestions(@Valid @RequestBody AdminAddDto adminQuizDto)
     {
         if (questionRepository.findQuestionByQuestionTitle(adminQuizDto.getQuestion())!= null)
@@ -69,7 +84,7 @@ public class AdminController {
     }
 
     @Transactional()
-    @PostMapping("/delete-question")
+    @PostMapping("/quiz/delete-question")
     public Result<?> adminDeleteQuestions(@Valid @RequestBody AdminDeleteDto adminDeleteDto)
     {
         Question question = questionRepository.findQuestionByQuestionTitle(adminDeleteDto.getQuestion());
@@ -87,7 +102,7 @@ public class AdminController {
         return Result.success("Deleted a question!");
     }
 
-    @GetMapping("/all-quiz")
+    @GetMapping("/quiz/all-quiz")
     public Result<?> showQuizList()
     {
         List<Question> questionList = questionRepository.findAll();
@@ -118,6 +133,38 @@ public class AdminController {
         return Result.success(allQuizResponseList);
     }
 
+    @PostMapping("/search/save")
+    public Result<?> save(@RequestBody Knowledge knowledge) {
+        knowledgeService.saveOrUpdate(knowledge);
+        return Result.success();
+    }
 
+    @PostMapping("/search/delBatch")
+    public Result<?> deleteBatch(@RequestBody List<Integer> ids, HttpServletRequest request) {
+        Integer userId = JwtUtils.getUserId(request);
+        knowledgeService.removeByIds(ids);
+        for (Integer id : ids) {
+            LambdaQueryWrapper<FavorRecords> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(FavorRecords::getKnowledgeId, id)
+                    .eq(FavorRecords::getUserId, userId)
+                    .last("limit 1");
+            FavorRecords favorRecords = favorRecordsMapper.selectOne(wrapper);
+            if (favorRecords != null) {
+                favorRecordsMapper.deleteById(favorRecords.getId());
+            }
+        }
+        return Result.success();
+    }
 
+    @PostMapping("/tutorial/save")
+    public Result<?> save(@RequestBody Tutorial tutorial) {
+        tutorialService.saveOrUpdate(tutorial);
+        return Result.success();
+    }
+
+    @PostMapping("/tutorial/delBatch")
+    public Result<?> deleteBatch(@RequestBody List<Integer> ids) {
+        tutorialService.removeByIds(ids);
+        return Result.success();
+    }
 }
