@@ -201,6 +201,11 @@ export default {
   font-size: 18px;
   color: #333;
   word-wrap: break-word;
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  /* word-wrap: break-word; */
 }
 
 .des-text2 {
@@ -212,6 +217,10 @@ export default {
   /* width: 80%; */
   margin-top: 20px;
   word-wrap: break-word;
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
 }
 
 @media screen and (min-width: 900px) and (max-width: 1440px) {
@@ -327,6 +336,10 @@ export default {
     color: #333;
     width: 90%;
     word-wrap: break-word;
+      overflow:hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
     /* margin-top: 0px; */
     /* background-color: #315efb; */
   }
@@ -338,6 +351,10 @@ export default {
     font-size: 13px;
     color: #333; */
     margin-top: 20px;
+    overflow:hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
 

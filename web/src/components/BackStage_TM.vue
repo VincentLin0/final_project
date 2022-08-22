@@ -60,13 +60,13 @@ export default {
         .then(() => {
           let loadingInstance = Loading.service({fullscreen: true});
           request
-            .post("users/admin/quiz/delete-question", {
+            .post("/admin/quiz/delete-question", {
               question: index,
             })
             .then((successResponse) => {
               console.log(successResponse);
               request
-                .get("users/admin/quiz/all-quiz")
+                .get("/admin/quiz/all-quiz")
                 // .then意思是指定回调函数
                 .then((successResponse) => {
                   this.tableData = successResponse.data;
@@ -96,7 +96,7 @@ export default {
     get_all_question() {
       let loadingInstance = Loading.service({fullscreen: true});
       request
-        .get("users/admin/quiz/all-quiz")
+        .get("/admin/quiz/all-quiz")
         // .then意思是指定回调函数
         .then((successResponse) => {
           this.tableData = successResponse.data;

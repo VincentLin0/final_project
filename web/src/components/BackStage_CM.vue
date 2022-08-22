@@ -114,8 +114,8 @@ export default {
       size: "0%",
       api: {
         listUrl: "/page",
-        saveUrl: "/save",
-        delUrl: "/delBatch",
+        saveUrl: "/admin/search/save",
+        delUrl: "/admin/tutorial/delBatch",
       },
       formData: {
         id: null,

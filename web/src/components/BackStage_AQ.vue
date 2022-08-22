@@ -61,7 +61,7 @@ export default {
       console.log(this.question);
       let question0 = this.question;
       request
-        .post("users/admin/quiz/add-question", {
+        .post("/admin/quiz/add-question", {
           question: question0,
           options: [this.option1, this.option2, this.option3, this.option4],
           answer: this.answer,

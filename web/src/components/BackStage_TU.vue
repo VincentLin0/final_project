@@ -129,8 +129,8 @@ export default {
       editor: null,
       api: {
         listUrl: "/tutorial/page",
-        saveUrl: "/tutorial/save",
-        delUrl: "/tutorial/delBatch",
+        saveUrl: "/admin/tutorial/save",
+        delUrl: "/admin/tutorial/delBatch",
       },
       /*      formData: {
               id: null,

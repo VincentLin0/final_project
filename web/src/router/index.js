@@ -52,7 +52,7 @@ const routes = [
       component: ContentView,
     },
     {
-      path: "/tutorial/:id",
+      path: "/tutorial/",
       name: "tutorialContent",
       component: TutorialContent,
     },

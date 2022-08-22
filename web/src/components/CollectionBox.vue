@@ -138,6 +138,10 @@ export default {
   font-size: 18px;
   color: #333;
   word-wrap: break-word;
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
   /* background-color: #315efb; */
 }
 
@@ -149,6 +153,10 @@ export default {
   color: #333; */
   margin-top: 20px;
   word-wrap: break-word;
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
 }
 
 @media screen and (min-width: 900px) and (max-width: 1440px) {
