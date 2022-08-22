@@ -5,60 +5,61 @@
     <!-- {{ searchContent }} -->
     <ul class="results">
       <li
-          class="result-content"
-          v-for="item in collectionResults"
-          :key="item.id"
+        class="result-content"
+        v-for="item in collectionResults"
+        :key="item.id"
       >
-      <div class="center">
-        <div class="star"><i class="el-icon-star-on"></i></div>
-        <router-link class="title" :to="'/tutorial/' + item.id+'?id='+item.id">{{ item.title }}</router-link></div>
-
-
+        <div class="center">
+          <div class="star"><i class="el-icon-star-on"></i></div>
+          <router-link
+            class="title"
+            :to="'/tutorial/' + item.id + '?id=' + item.id"
+            >{{ item.title }}</router-link
+          >
+        </div>
       </li>
     </ul>
-
   </div>
 </template>
 
 <script>
-import request from '../utils/request'
+import request from "../utils/request";
 export default {
-  name: 'searchResult',
+  name: "searchResult",
   data() {
     return {
-      searchContent: '',
-      collectionResults: []
-    }
+      searchContent: "",
+      collectionResults: [],
+    };
   },
   components: {
     // AccountBox
   },
   methods: {
     search() {
-      request.get("/tutorial/list")
-          // .then意思是指定回调函数
-          .then((successResponse) => {
-            console.log(successResponse)
-            this.collectionResults = successResponse.data
-
-          })
-    }
+      request
+        .get("/tutorial/list")
+        // .then意思是指定回调函数
+        .then((successResponse) => {
+          console.log(successResponse);
+          this.collectionResults = successResponse.data;
+        });
+    },
   },
   created() {
-    this.search()
-  }
-}
-
+    this.search();
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.star{
+.star {
   width: 30px;
-    margin-top: 7px;
-    margin-bottom: 5px;
+  margin-top: 7px;
+  margin-bottom: 5px;
 }
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
@@ -128,7 +129,6 @@ export default {
   border-radius: 15px;
 }
 
-
 .des-text1 {
   position: relative;
   margin-left: 40%;
@@ -136,7 +136,7 @@ export default {
   width: 416px;
   font-size: 18px;
   color: #333;
-  word-wrap:break-word;
+  word-wrap: break-word;
   /* background-color: #315efb; */
 }
 
@@ -147,7 +147,7 @@ export default {
   font-size: 13px;
   color: #333; */
   margin-top: 20px;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 @media screen and (min-width: 900px) and (max-width: 1440px) {
@@ -187,7 +187,7 @@ export default {
     width: 416px;
     font-size: 18px;
     color: #333;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 }
@@ -253,7 +253,6 @@ export default {
     display: none;
   }
 
-
   .des-text1 {
     position: relative;
     margin-left: 0%;
@@ -262,7 +261,7 @@ export default {
     font-size: 18px;
     color: #333;
     width: 90%;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 
@@ -273,7 +272,7 @@ export default {
     font-size: 13px;
     color: #333; */
     margin-top: 20px;
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 }
 
@@ -338,7 +337,6 @@ export default {
     display: none;
   }
 
-
   .des-text1 {
     position: relative;
     margin-left: 0%;
@@ -346,7 +344,7 @@ export default {
     width: 416px;
     font-size: 18px;
     color: #333;
-    word-wrap:break-word;
+    word-wrap: break-word;
     /* background-color: #315efb; */
   }
 
@@ -357,8 +355,7 @@ export default {
     font-size: 13px;
     color: #333; */
     margin-top: 20px;
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 }
-
 </style>

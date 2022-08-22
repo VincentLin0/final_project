@@ -1,65 +1,82 @@
 <template lang="">
-  <div class = "box">
+  <div class="box">
     <HeadBar></HeadBar>
     <el-container>
       <el-main>
-    <div>
-      <img  src="../assets/img/logo1.svg"  alt="cannot  show"  class="logo">
-    </div>
-    <div class="login" id="login">
-      <div class="center"><h2 class = "title">Welcome to Signup</h2></div>
-      <div class="input-wrap">
-        <!-- <label for="male">Account number:</label> -->
-        <div class="center"><input class = "inputbox1" type="text" v-model="username" placeholder="Username"/></div>
-        
-      </div>
-      <div class="input-wrap">
-        <!-- <label for="male">Account number:</label> -->
-        <div class="center"><input class = "inputbox2" type="email" v-model="email" placeholder="Email"/></div>
-        
-      </div>
-      <div class="input-wrap">
-        <!-- <label for="male">Password：</label> -->
-        <div class="center"><input class = "inputbox2" type="password" v-model="password" placeholder="Password"/></div>
-      </div>
-      <div class="input-wrap">
-        <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
-       <div class="center"> <button class= "Register" @click="regist">Sign up</button></div>
-
-      </div>
-      
-    </div>
-    </el-main>
+        <div>
+          <img src="../assets/img/logo1.svg" alt="cannot  show" class="logo" />
+        </div>
+        <div class="login" id="login">
+          <div class="center"><h2 class="title">Welcome to Signup</h2></div>
+          <div class="input-wrap">
+            <!-- <label for="male">Account number:</label> -->
+            <div class="center">
+              <input
+                class="inputbox1"
+                type="text"
+                v-model="username"
+                placeholder="Username"
+              />
+            </div>
+          </div>
+          <div class="input-wrap">
+            <!-- <label for="male">Account number:</label> -->
+            <div class="center">
+              <input
+                class="inputbox2"
+                type="email"
+                v-model="email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          <div class="input-wrap">
+            <!-- <label for="male">Password：</label> -->
+            <div class="center">
+              <input
+                class="inputbox2"
+                type="password"
+                v-model="password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div class="input-wrap">
+            <!-- <button v-on:click="login">登录账号</button>&nbsp;&nbsp; -->
+            <div class="center">
+              <button class="Register" @click="regist">Sign up</button>
+            </div>
+          </div>
+        </div>
+      </el-main>
     </el-container>
-  <div id="app">
-    <BottomBar></BottomBar>
-  </div>
+    <div id="app">
+      <BottomBar></BottomBar>
+    </div>
   </div>
 </template>
 <script>
-import HeadBar from '../components/HeadBar.vue'
-import BottomBar from '../components/BottomBar.vue'
-import request from '../utils/request'
-import { Loading } from 'element-ui';
-
+import HeadBar from "../components/HeadBar.vue";
+import BottomBar from "../components/BottomBar.vue";
+import request from "../utils/request";
+import {Loading} from "element-ui";
 
 export default {
-    name: 'App',
+  name: "App",
   components: {
     HeadBar,
     BottomBar,
   },
 
-  data () {
+  data() {
     return {
-      username: '',
-      email:'',
-      password: ''
-    }
+      username: "",
+      email: "",
+      password: "",
+    };
   },
   methods: {
-    
-    // login () {     
+    // login () {
 
     //   const username = this.username
     //   const email = this.email
@@ -79,308 +96,301 @@ export default {
     //       }
     //   })
 
-
-      // this.$axios
-      //     .post("/user/login",{
-      //       username: username,
-      //       password: password,
-      //     })
-      //     .then((resp) => {
-      //       console.log(resp);
-      //       let code = resp.data.code;
-      //       alert(code)
-      //     if(code === 200){
-      //       alert("successful!");
-      //       this.$router.push({path:"/"});
-      //     }else{
-      //       alert("login failure!");
-      //     }
-      //     });  
+    // this.$axios
+    //     .post("/user/login",{
+    //       username: username,
+    //       password: password,
+    //     })
+    //     .then((resp) => {
+    //       console.log(resp);
+    //       let code = resp.data.code;
+    //       alert(code)
+    //     if(code === 200){
+    //       alert("successful!");
+    //       this.$router.push({path:"/"});
+    //     }else{
+    //       alert("login failure!");
+    //     }
+    //     });
     // },
-    regist(){
-      
-      const username = this.username
-      const password = this.password
-      const email = this.email
-      if(username.length == 0 || password.length == 0 || email.length ==0) {
-        
+    regist() {
+      const username = this.username,
+        password = this.password,
+        email = this.email;
+      if (username.length == 0 || password.length == 0 || email.length == 0) {
         this.$message({
-        message: 'Please enter your account number and password',
-        type: 'warning'
+          message: "Please enter your account number and password",
+          type: "warning",
         });
         return;
       }
       var verify = /^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
-      if (verify.test(this.email)){
-      let loadingInstance = Loading.service({ fullscreen: true });
-      request.post("users/signup",{username:username,email:email,password:password}).then(res=>{
-          console.log(res);
-          loadingInstance.close();
-          this.$message({
-          message:'Sign up successfully',
-          type:'success'});
-          this.$router.push('/login');
-          }).catch(error => {
+      if (verify.test(this.email)) {
+        let loadingInstance = Loading.service({fullscreen: true});
+        request
+          .post("users/signup", {
+            username: username,
+            email: email,
+            password: password,
+          })
+          .then((res) => {
+            console.log(res);
+            loadingInstance.close();
+            this.$message({
+              message: "Sign up successfully",
+              type: "success",
+            });
+            this.$router.push("/login");
+          })
+          .catch((error) => {
             loadingInstance.close();
             console.log(error);
-           this.$message.error("Sorry,The user name or email address has been registered!");})
-      //   if(res.success === true){
-      //     alert(res.msg);
-      //     alert("please log on");
-      //   }else{
-      //       alert(res.msg);
-      //     }
-      }else{
+            this.$message.error(
+              "Sorry,The user name or email address has been registered!"
+            );
+          });
+        //   if(res.success === true){
+        //     alert(res.msg);
+        //     alert("please log on");
+        //   }else{
+        //       alert(res.msg);
+        //     }
+      } else {
         this.$message({
-        message: 'Please enter the correct account number and password',
-        type: 'warning'
+          message: "Please enter the correct account number and password",
+          type: "warning",
         });
         return;
       }
-    }
-
-  }
-}
+    },
+  },
+};
 </script>
- 
+
 <style>
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
-.box{
-  background-color:aliceblue;
+.box {
+  background-color: aliceblue;
 }
-.title{
+.title {
   font-size: 24px;
-
 }
 .login {
   width: 456px;
   height: 396px;
-  padding:10px;
-  border:0px solid;
-  border-radius:7px;
+  padding: 10px;
+  border: 0px solid;
+  border-radius: 7px;
   background-color: white;
   box-shadow: 1px 1px 5px #c4c4c4;
   /*margin: 20% auto;*/
   margin-top: -320px;
   margin-left: 50%;
   /* margin-top: 20px; */
-  
 }
-.logo{
+.logo {
   margin-top: 150px;
   margin-left: 12%;
   width: 300px;
 }
 
-.inputbox1{
+.inputbox1 {
   width: 364px;
   height: 53px;
   margin-top: 15px;
   margin-bottom: 20px;
-
-
-
 }
-.inputbox2{
+.inputbox2 {
   width: 364px;
   height: 53px;
   margin-top: 0px;
   margin-bottom: 20px;
-
 }
-#Login{
+#Login {
   width: 364px;
   height: 53px;
-  background-color: rgb(80,130,241);
-  border:0px solid;
-  border-radius:5px;
+  background-color: rgb(80, 130, 241);
+  border: 0px solid;
+  border-radius: 5px;
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
-  margin-left:55px;
+  margin-left: 55px;
 }
 
-.Register{
+.Register {
   width: 364px;
   height: 53px;
-  background-color: rgb(95,170,63);
-  border:0px solid;
-  border-radius:5px;
+  background-color: rgb(95, 170, 63);
+  border: 0px solid;
+  border-radius: 5px;
   color: rgb(255, 255, 255);
   font-size: 24px;
   margin-top: 20px;
 
-  cursor:pointer;
+  cursor: pointer;
 }
 @media screen and (min-width: 900px) and (max-width: 1120px) {
   .login {
-  width: 456px;
-  height: 396px;
-  padding:10px;
-  border:0px solid;
-  border-radius:7px;
-  background-color: white;
-  box-shadow: 1px 1px 5px #c4c4c4;
-  /*margin: 20% auto;*/
-  margin-top: -320px;
-  margin-left: 40%;
-  /* margin-top: 20px; */
+    width: 456px;
+    height: 396px;
+    padding: 10px;
+    border: 0px solid;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #c4c4c4;
+    /*margin: 20% auto;*/
+    margin-top: -320px;
+    margin-left: 40%;
+    /* margin-top: 20px; */
+  }
+  .logo {
+    margin-top: 150px;
+    margin-left: 5%;
+    width: 300px;
+  }
 }
-.logo{
-  margin-top: 150px;
-  margin-left: 5%;
-  width: 300px;
-}
-}
- @media screen and (min-width: 720px) and (max-width: 899px) {
+@media screen and (min-width: 720px) and (max-width: 899px) {
   .login {
-  width: 456px;
-  height: 396px;
-  padding:10px;
-  border:0px solid;
-  border-radius:7px;
-  background-color: white;
-  box-shadow: 1px 1px 5px #c4c4c4;
-  /*margin: 20% auto;*/
-  /* margin-top: 20px;  */
-  margin-left: 20%;
-}
-.logo{
-  margin-top: 150px;
-  margin-left: 5%;
-  width: 300px;
-  opacity:0;
-}
+    width: 456px;
+    height: 396px;
+    padding: 10px;
+    border: 0px solid;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #c4c4c4;
+    /*margin: 20% auto;*/
+    /* margin-top: 20px;  */
+    margin-left: 20%;
+  }
+  .logo {
+    margin-top: 150px;
+    margin-left: 5%;
+    width: 300px;
+    opacity: 0;
+  }
 }
 
- @media screen and (min-width: 425px) and (max-width: 720px) {
-  .title{
-  font-size: 18px;
-
-}
+@media screen and (min-width: 425px) and (max-width: 720px) {
+  .title {
+    font-size: 18px;
+  }
   .login {
-  width: 300px;
-  height: 396px;
-  padding:10px;
-  border:0px solid;
-  border-radius:7px;
-  background-color: white;
-  box-shadow: 1px 1px 5px #c4c4c4;
+    width: 300px;
+    height: 396px;
+    padding: 10px;
+    border: 0px solid;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #c4c4c4;
 
-  margin-left: 20%;
-}
-.logo{
-  margin-top: 150px;
-  margin-left: 5%;
-  width: 300px;
-  opacity:0;
-}
+    margin-left: 20%;
+  }
+  .logo {
+    margin-top: 150px;
+    margin-left: 5%;
+    width: 300px;
+    opacity: 0;
+  }
 
-.inputbox1{
-  width: 250px;
-  height: 53px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  .inputbox1 {
+    width: 250px;
+    height: 53px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  .inputbox2 {
+    width: 250px;
+    height: 53px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+  #Login {
+    width: 250px;
+    height: 53px;
+    background-color: rgb(80, 130, 241);
+    border: 0px solid;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 
-}
-.inputbox2{
-  width: 250px;
-  height: 53px;
-  margin-top: 0px;
-  margin-bottom: 20px;
+  .Register {
+    width: 250px;
+    height: 53px;
+    background-color: rgb(95, 170, 63);
+    border: 0px solid;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    margin-top: 20px;
 
-}
-#Login{
-  width: 250px;
-  height: 53px;
-  background-color: rgb(80,130,241);
-  border:0px solid;
-  border-radius:5px;
-  color: rgb(255, 255, 255);
-  font-size: 24px;
-  margin-top: 20px;
-  margin-left:20px;
-}
-
-.Register{
-  width: 250px;
-  height: 53px;
-  background-color: rgb(95,170,63);
-  border:0px solid;
-  border-radius:5px;
-  color: rgb(255, 255, 255);
-  font-size: 24px;
-  margin-top: 20px;
-
-  cursor:pointer;
-}
+    cursor: pointer;
+  }
 }
 @media screen and (min-width: 0px) and (max-width: 425px) {
-  .title{
-  font-size: 18px;
-
-}
+  .title {
+    font-size: 18px;
+  }
   .login {
-  width: 300px;
-  height: 396px;
-  padding:10px;
-  border:0px solid;
-  border-radius:7px;
-  background-color: white;
-  box-shadow: 1px 1px 5px #c4c4c4;
-  /*margin: 20% auto;*/
-  /* margin-top: 20px;  */
-  margin-left: 5%;
-}
-.logo{
-  margin-top: 150px;
-  margin-left: 5%;
-  width: 300px;
-  opacity:0;
-}
+    width: 300px;
+    height: 396px;
+    padding: 10px;
+    border: 0px solid;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 1px 1px 5px #c4c4c4;
+    /*margin: 20% auto;*/
+    /* margin-top: 20px;  */
+    margin-left: 5%;
+  }
+  .logo {
+    margin-top: 150px;
+    margin-left: 5%;
+    width: 300px;
+    opacity: 0;
+  }
 
-.inputbox1{
-  width: 250px;
-  height: 53px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  .inputbox1 {
+    width: 250px;
+    height: 53px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  .inputbox2 {
+    width: 250px;
+    height: 53px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+  #Login {
+    width: 250px;
+    height: 53px;
+    background-color: rgb(80, 130, 241);
+    border: 0px solid;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 
-}
-.inputbox2{
-  width: 250px;
-  height: 53px;
-  margin-top: 0px;
-  margin-bottom: 20px;
+  .Register {
+    width: 250px;
+    height: 53px;
+    background-color: rgb(95, 170, 63);
+    border: 0px solid;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    margin-top: 15px;
 
+    cursor: pointer;
+  }
 }
-#Login{
-  width: 250px;
-  height: 53px;
-  background-color: rgb(80,130,241);
-  border:0px solid;
-  border-radius:5px;
-  color: rgb(255, 255, 255);
-  font-size: 24px;
-  margin-top: 20px;
-  margin-left:20px;
-}
-
-.Register{
-  width: 250px;
-  height: 53px;
-  background-color: rgb(95,170,63);
-  border:0px  solid;
-  border-radius:5px;
-  color: rgb(255, 255, 255);
-  font-size: 24px;
-  margin-top: 15px;
-
-  cursor:pointer;
-}
-}
-
 </style>
-

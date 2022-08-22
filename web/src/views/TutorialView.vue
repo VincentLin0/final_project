@@ -1,40 +1,35 @@
 <template lang="">
-  <div class = "box">
-
-      <HeadBar></HeadBar>
-        <div class="mainContent">
-          <TutorialBox></TutorialBox>
-        </div>
-      <BottomBar></BottomBar>
-
+  <div class="box">
+    <HeadBar></HeadBar>
+    <div class="mainContent">
+      <TutorialBox></TutorialBox>
+    </div>
+    <BottomBar></BottomBar>
   </div>
 </template>
 <script>
-import HeadBar from '../components/HeadBar.vue'
-import BottomBar from '../components/BottomBar.vue'
-import TutorialBox from '../components/TutorialBox.vue'
+import HeadBar from "../components/HeadBar.vue";
+import BottomBar from "../components/BottomBar.vue";
+import TutorialBox from "../components/TutorialBox.vue";
 export default {
-    name: 'App',
+  name: "App",
   components: {
-   HeadBar,
-   BottomBar,
-	TutorialBox
+    HeadBar,
+    BottomBar,
+    TutorialBox,
   },
 
-  methods:{
-
-}
-}
+  methods: {},
+};
 </script>
- 
+
 <style>
-.mainContent{
+.mainContent {
   min-height: 880px;
 }
-.bottom{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-  }
+.bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 </style>
-

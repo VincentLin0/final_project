@@ -3,17 +3,17 @@
     <div style="border: 1px solid #ccc; margin-top: 10px">
       <!-- 工具栏 -->
       <Toolbar
-          style="border-bottom: 1px solid #ccc"
-          :editor="editor"
-          :defaultConfig="toolbarConfig"
+        style="border-bottom: 1px solid #ccc"
+        :editor="editor"
+        :defaultConfig="toolbarConfig"
       />
       <!-- 编辑器 -->
       <Editor
-          style="height: 400px; overflow-y: hidden"
-          :defaultConfig="editorConfig"
-          v-model="html"
-          @onChange="onChange"
-          @onCreated="onCreated"
+        style="height: 400px; overflow-y: hidden"
+        :defaultConfig="editorConfig"
+        v-model="html"
+        @onChange="onChange"
+        @onCreated="onCreated"
       />
     </div>
     <!--    <div style="margin-top: 10px">
@@ -22,26 +22,25 @@
               readonly
               style="width: 100%; height: 200px; outline: none"
           ></textarea>
-        </div>-->
+    </div>-->
   </div>
 </template>
 
 <script>
 import {Editor, Toolbar} from "@wangeditor/editor-for-vue";
-import { i18nChangeLanguage } from '@wangeditor/editor'
-
+import {i18nChangeLanguage} from "@wangeditor/editor";
 
 // 切换语言 - 'en' 或者 'zh-CN'
-i18nChangeLanguage('en')
+i18nChangeLanguage("en");
 export default {
   props: {
     content: {
       type: String,
-      default: "",
+      default: ""
     },
     isClearContent: {
       type: Boolean,
-      default: false,
+      default: false
     }
   },
   watch: {
@@ -49,11 +48,10 @@ export default {
       handler(newValue, oldValue) {
         console.log("新的", JSON.stringify(newValue));
         console.log("旧的", JSON.stringify(oldValue));
-        if(newValue){
-            this.clearContent()
+        if (newValue) {
+          this.clearContent();
         }
-      },
-
+      }
     }
   },
 
@@ -72,8 +70,8 @@ export default {
         // autoFocus: false,
 
         // 所有的菜单配置，都要在 MENU_CONF 属性下
-        MENU_CONF: {},
-      },
+        MENU_CONF: {}
+      }
     };
   },
   methods: {
@@ -82,7 +80,7 @@ export default {
     },
     onChange(editor) {
       // console.log("onChange", editor.getHtml())
-      this.$emit("content-change", editor.getHtml())
+      this.$emit("content-change", editor.getHtml());
     },
     getEditorText() {
       const editor = this.editor;
@@ -96,10 +94,9 @@ export default {
 
       console.log(editor.getHtml()); // 执行 editor API
     },
-    clearContent(){
-      this.editor.setHtml('<p><br></p>')
-      this.$emit("reset-editor", false)
-
+    clearContent() {
+      this.editor.setHtml("<p><br></p>");
+      this.$emit("reset-editor", false);
     }
   },
   mounted() {
@@ -112,7 +109,7 @@ export default {
     const editor = this.editor;
     if (editor == null) return;
     editor.destroy(); // 组件销毁时，及时销毁 editor ，重要！！！
-  },
+  }
 };
 </script>
 
