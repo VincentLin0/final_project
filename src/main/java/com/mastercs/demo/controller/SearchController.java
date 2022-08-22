@@ -1,16 +1,12 @@
 package com.mastercs.demo.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.jwt.JWT;
-import cn.hutool.jwt.JWTUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mastercs.demo.bean.entity.FavorRecords;
-import com.mastercs.demo.bean.entity.Knowledge;
-import com.mastercs.demo.config.Result;
-import com.mastercs.demo.dto.KnowledgeDTO;
+import com.mastercs.demo.bean.FavorRecords;
+import com.mastercs.demo.bean.Knowledge;
+import com.mastercs.demo.bean.Result;
+import com.mastercs.demo.payload.KnowledgeDTO;
 import com.mastercs.demo.mapper.FavorRecordsMapper;
 import com.mastercs.demo.payload.Receive;
 import com.mastercs.demo.repository.SearchDAO;
@@ -166,7 +162,6 @@ public class SearchController {
         list.forEach(u -> {
             Knowledge knowledge = setCoverUrl(u);
             BeanUtil.copyProperties(knowledge, u);
-            ;
         });
 
         return Result.success(list);

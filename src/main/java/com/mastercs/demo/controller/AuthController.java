@@ -4,7 +4,7 @@ package com.mastercs.demo.controller;
 import com.mastercs.demo.bean.EnumRole;
 import com.mastercs.demo.bean.Role;
 import com.mastercs.demo.bean.User;
-import com.mastercs.demo.config.Result;
+import com.mastercs.demo.bean.Result;
 import com.mastercs.demo.payload.LoginDto;
 import com.mastercs.demo.payload.SignupDto;
 import com.mastercs.demo.repository.RoleRepository;
@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.HashSet;
-
-import static java.awt.SystemColor.window;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

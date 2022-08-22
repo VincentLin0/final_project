@@ -1,7 +1,6 @@
 package com.mastercs.demo.payload;
 
 
-import com.mastercs.demo.dto.PageInfo;
 import lombok.Data;
 
 @Data

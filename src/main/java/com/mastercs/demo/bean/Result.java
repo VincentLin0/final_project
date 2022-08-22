@@ -1,4 +1,4 @@
-package com.mastercs.demo.config;
+package com.mastercs.demo.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

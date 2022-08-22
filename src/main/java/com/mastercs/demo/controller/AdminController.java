@@ -1,13 +1,9 @@
 package com.mastercs.demo.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.mastercs.demo.bean.EnumOption;
-import com.mastercs.demo.bean.Options;
-import com.mastercs.demo.bean.Question;
-import com.mastercs.demo.bean.entity.FavorRecords;
-import com.mastercs.demo.bean.entity.Knowledge;
-import com.mastercs.demo.bean.entity.Tutorial;
-import com.mastercs.demo.config.Result;
+import com.mastercs.demo.bean.*;
+import com.mastercs.demo.bean.FavorRecords;
+import com.mastercs.demo.bean.Knowledge;
 import com.mastercs.demo.mapper.FavorRecordsMapper;
 import com.mastercs.demo.payload.AdminAddDto;
 import com.mastercs.demo.payload.AdminDeleteDto;
@@ -71,13 +67,13 @@ public class AdminController {
         {
             Options options = new Options();
             options.setOptionTitle(option);
-            options.setOption(EnumOption.OPTIONS_WRONG);
+            options.setName(EnumOption.OPTIONS_WRONG);
             options.setQuestion(question);
             optionRepository.save(options);
         }
 
         Options correctOption = optionRepository.findOptionsByOptionTitleAndQuestion(adminQuizDto.getAnswer(),question);
-        correctOption.setOption(EnumOption.OPTIONS_CORRECT);
+        correctOption.setName(EnumOption.OPTIONS_CORRECT);
         optionRepository.save(correctOption);
 
         return Result.success("Added new question!");

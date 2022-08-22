@@ -1,4 +1,4 @@
-package com.mastercs.demo.aspect;
+package com.mastercs.demo.config;
 
 
 import org.springframework.context.annotation.Bean;

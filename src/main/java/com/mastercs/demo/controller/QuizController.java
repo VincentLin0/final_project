@@ -1,7 +1,7 @@
 package com.mastercs.demo.controller;
 
 import com.mastercs.demo.bean.*;
-import com.mastercs.demo.config.Result;
+import com.mastercs.demo.bean.Result;
 import com.mastercs.demo.payload.QuestionResponse;
 import com.mastercs.demo.payload.QuizDto;
 import com.mastercs.demo.payload.QuizResponse;
@@ -22,11 +22,9 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/users/quiz")
-public class UserController {
+public class QuizController {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    QuestionRepository quizRepository;
 
     @Autowired
     OptionRepository optionRepository;
@@ -66,7 +64,7 @@ public class UserController {
         userQuestion.setUser(user);
         userQuestion.setQuestion(question);
         userQuestion.setOptions(option);
-        userQuestion.setName(option.getOption());
+        userQuestion.setName(option.getName());
         userQuestionRepository.save(userQuestion);
 
         // get answer
@@ -107,7 +105,7 @@ public class UserController {
     @GetMapping("/list-of-quiz")
     public Result<?> showQuizList()
     {
-        List<Question> questionList = quizRepository.findAll();
+        List<Question> questionList = questionRepository.findAll();
         List<Long> questionIdList = new ArrayList<>();
 
         for (Question question:questionList)
