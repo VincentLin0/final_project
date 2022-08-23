@@ -1,9 +1,10 @@
 package com.mastercs.demo.bean;
 
 import com.fasterxml.jackson.databind.util.EnumResolver;
+import lombok.Data;
 
 import javax.persistence.*;
-
+@Data
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -19,23 +20,23 @@ public class Role {
 
   }
 
-  public Role(EnumRole name) {
-    this.name = name;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public EnumRole getName() {
-    return name;
-  }
-
-  public void setName(EnumRole name) {
-    this.name = name;
-  }
+//  public Role(EnumRole name) {
+//    this.name = name;
+//  }
+//
+//  public Integer getId() {
+//    return id;
+//  }
+//
+//  public void setId(Integer id) {
+//    this.id = id;
+//  }
+//
+//  public EnumRole getName() {
+//    return name;
+//  }
+//
+//  public void setName(EnumRole name) {
+//    this.name = name;
+//  }
 }

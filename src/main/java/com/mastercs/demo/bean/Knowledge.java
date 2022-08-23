@@ -1,4 +1,4 @@
-package com.mastercs.demo.dto;
+package com.mastercs.demo.bean;
 
 // 用于映射数据库到后端，数据库：baidu_search，表名：items，映射过来叫：Search
 
@@ -6,11 +6,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
-public class KnowledgeDTO  {
+@Table(name = "knowledge")//数据库表名
+public class Knowledge  implements Serializable {
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String title;
@@ -28,8 +30,6 @@ public class KnowledgeDTO  {
     private String audio;
 
     private String video;
-
-    private Boolean isCollect;
 
 }
 

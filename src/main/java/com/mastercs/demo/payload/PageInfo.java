@@ -1,4 +1,4 @@
-package com.mastercs.demo.dto;
+package com.mastercs.demo.payload;
 
 import lombok.Data;
 

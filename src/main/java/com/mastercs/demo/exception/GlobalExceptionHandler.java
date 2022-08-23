@@ -1,6 +1,6 @@
 package com.mastercs.demo.exception;
 
-import com.mastercs.demo.config.Result;
+import com.mastercs.demo.bean.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.nio.file.AccessDeniedException;
-import java.security.Signature;
-import java.security.SignatureException;
 
 @Slf4j
 @RestControllerAdvice

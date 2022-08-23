@@ -1,9 +1,12 @@
 package com.mastercs.demo.bean;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@Data
 @Entity
 @Table(name = "question")
 public class Question {
@@ -23,38 +26,38 @@ public class Question {
     @Column(name = "audio")
     private String audio;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getQuestionTitle()
-    {
-        return questionTitle;
-    }
-
-    public void setQuestionTitle(String questionTitle)
-    {
-        this.questionTitle = questionTitle;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getAudio() {
-        return audio;
-    }
-
-    public void setAudio(String audio) {
-        this.audio = audio;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getQuestionTitle()
+//    {
+//        return questionTitle;
+//    }
+//
+//    public void setQuestionTitle(String questionTitle)
+//    {
+//        this.questionTitle = questionTitle;
+//    }
+//
+//    public String getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
+//
+//    public String getAudio() {
+//        return audio;
+//    }
+//
+//    public void setAudio(String audio) {
+//        this.audio = audio;
+//    }
 }
 
