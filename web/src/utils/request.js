@@ -94,6 +94,11 @@ request.interceptors.response.use(
     if (error.response.data.code === "400") {
       error.response.data.msg = "Login failed. Please log in again~";
       Element.Message.error(error.response.data.msg);
+      localStorage.clear();
+      window.location.reload();
+      // window.location.href = "/#/login"
+      // localStorage.setItem("userInfo", null);
+      // localStorage.setItem("token", null);
     }
     if (error.response.data.code === "403") {
       error.response.data.msg =

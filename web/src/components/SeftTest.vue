@@ -33,11 +33,28 @@
     </template>
 
     <el-button
+      v-show="isShow == false"
       class="check"
       @click="check_answer"
       type="primary"
       icon="el-icon-check"
       >Check the answers</el-button
+    >
+    <el-button
+      v-show="isShow == true && this.num != this.last"
+      class="check1"
+      @click="next_question"
+      type="primary"
+      icon="el-icon-check"
+      >Next question</el-button
+    >
+    <el-button
+      v-show="resultIsShow == true "
+      class="check1"
+      @click="check_result"
+      type="primary"
+      icon="el-icon-check"
+      >Check result</el-button
     >
     <!-- <el-button type="primary" icon="el-icon-check">Next question</el-button> -->
   </div>
@@ -55,6 +72,8 @@ export default {
   },
   data() {
     return {
+      isShow:false,
+      resultIsShow:false,
       dataInfo: {
         options: [],
         question: {
@@ -175,6 +194,7 @@ export default {
               if (successResponse.length === 0) {
                 alert("error");
               }
+
             })
             // 指定发生错误时的回调函数
             .catch((failResponse) => {
@@ -238,6 +258,15 @@ export default {
       //   })
       // }
     },
+    changeIsShowToTure(){
+      this.isShow = true;
+    },
+    changeIsShowToFalse(){
+      this.isShow = false;
+    },
+    changeResultIsShow(){
+      this.resultIsShow = true;
+    },
     next_question() {
       this.num = this.num + 1;
       this.id = this.questionInfo[this.num];
@@ -245,9 +274,8 @@ export default {
       console.log("下一题是" + this.id);
       this.get_QandA();
       this.radio = "";
-
       this.$forceUpdate();
-
+      this.changeIsShowToFalse()
       // this.$router.go(0);
       // request.post("users/quiz/add-questions",{question:"aaa",options:["4","5","6"],answer:"4"})
     },
@@ -275,17 +303,21 @@ export default {
     },
 
     open() {
-      if (this.num < this.last) {
+      // if (this.num < this.last) {
         if (this.answerInfo.right === true) {
           this.$alert("the answer is right", "Result", {
-            confirmButtonText: "Next question",
+            confirmButtonText: "Ok",
             callback: (action) => {
-              this.next_question();
-              this.$message({
-                type: "success",
-                message:
-                  "The answer has been uploaded, moving to the next question",
-              });
+              this.changeIsShowToTure();
+              if (this.num == this.last){
+              this.changeResultIsShow();
+              }
+              // this.next_question();
+              // this.$message({
+              //   type: "success",
+              //   message:
+              //     "The answer has been uploaded, moving to the next question",
+              // });
               // eslint-disable-next-line no-lone-blocks
               {
                 // eslint-disable-next-line no-unused-expressions
@@ -299,54 +331,18 @@ export default {
               this.answerInfo.answer,
             "Result",
             {
-              confirmButtonText: "Next question",
+              confirmButtonText: "Ok",
               callback: (action) => {
-                this.next_question();
-                this.$message({
-                  type: "success",
-                  message:
-                    "The answer has been uploaded, moving to the next question",
-                });
-                // eslint-disable-next-line no-lone-blocks
-                {
-                  // eslint-disable-next-line no-unused-expressions
-                  action;
-                }
-              },
-            }
-          );
-        }
-      } else {
-        if (this.answerInfo.right === true) {
-          this.$alert("the answer is right", "Result", {
-            confirmButtonText: "Check the result",
-            callback: (action) => {
-              this.check_result();
-              this.$message({
-                type: "success",
-                message: "The answer has been uploaded, Let's check the result",
-              });
-              // eslint-disable-next-line no-lone-blocks
-              {
-                // eslint-disable-next-line no-unused-expressions
-                action;
+                this.changeIsShowToTure();
+                if (this.num == this.last){
+                this.changeResultIsShow();
               }
-            },
-          });
-        } else {
-          this.$alert(
-            "the answer is wrong, the correct answer is " +
-              this.answerInfo.answer,
-            "Result",
-            {
-              confirmButtonText: "Check the result",
-              callback: (action) => {
-                this.check_result();
-                this.$message({
-                  type: "success",
-                  message:
-                    "The answer has been uploaded, Let's check the result",
-                });
+                // this.next_question();
+                // this.$message({
+                //   type: "success",
+                //   message:
+                //     "The answer has been uploaded, moving to the next question",
+                // });
                 // eslint-disable-next-line no-lone-blocks
                 {
                   // eslint-disable-next-line no-unused-expressions
@@ -356,7 +352,47 @@ export default {
             }
           );
         }
-      }
+      // } else {
+      //   if (this.answerInfo.right === true) {
+      //     this.$alert("the answer is right", "Result", {
+      //       confirmButtonText: "Check the result",
+      //       callback: (action) => {
+      //         this.check_result();
+      //         this.$message({
+      //           type: "success",
+      //           message: "The answer has been uploaded, Let's check the result",
+      //         });
+      //         // eslint-disable-next-line no-lone-blocks
+      //         {
+      //           // eslint-disable-next-line no-unused-expressions
+      //           action;
+      //         }
+      //       },
+      //     });
+      //   } else {
+      //     this.$alert(
+      //       "the answer is wrong, the correct answer is " +
+      //         this.answerInfo.answer,
+      //       "Result",
+      //       {
+      //         confirmButtonText: "Check the result",
+      //         callback: (action) => {
+      //           this.check_result();
+      //           this.$message({
+      //             type: "success",
+      //             message:
+      //               "The answer has been uploaded, Let's check the result",
+      //           });
+      //           // eslint-disable-next-line no-lone-blocks
+      //           {
+      //             // eslint-disable-next-line no-unused-expressions
+      //             action;
+      //           }
+      //         },
+      //       }
+      //     );
+      //   }
+      // }
     },
   },
 
@@ -376,6 +412,7 @@ export default {
   margin-top: 20px;
 }
 .question {
+  width:60%;
   margin-top: 50px;
   margin-left: 15%;
   font-size: 150%;
@@ -402,5 +439,12 @@ export default {
   margin-top: 100px;
   margin-bottom: 100px;
   margin-left: 15%;
+}
+.check1{
+  display: block;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  position: relative;
+  left:15%;
 }
 </style>
