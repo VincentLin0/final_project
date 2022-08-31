@@ -41,7 +41,7 @@ export default {
         .get("/tutorial/list")
         // .then意思是指定回调函数
         .then((successResponse) => {
-          console.log(successResponse);
+          console.log("123", successResponse);
           this.collectionResults = successResponse.data;
         });
     },

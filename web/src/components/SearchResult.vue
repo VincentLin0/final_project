@@ -3,7 +3,7 @@
     <div class="BreadcrumbNavgation">
       <BreadcrumbNavgation></BreadcrumbNavgation>
     </div>
-    <div class="result-num">
+    <div v-if="this.$route.query.searchContent != ' '" class="result-num">
       the following are {{ this.$route.query.searchContent }} relevant results
     </div>
     {{ searchContent }}

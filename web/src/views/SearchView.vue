@@ -3,48 +3,50 @@
     <HeadBar></HeadBar>
 
     <div class="search">
-      <select class="d6">
+      <!-- <select class="d6">
         <option value="">Listes</option>
         <option value="2">Listes1</option>
         <option value="3">Listes2</option>
-      </select>
+      </select> -->
       <input
         type="search"
         v-model="searchContent"
         placeholder="Type in something."
       />
       <div @click="search" class="sea"></div>
+      <!-- <p @click="all_result" class="title2">All murmurs</p> -->
       <!-- <router-link class="search_box" :to="'/result?' + searchContent" ><div  class="sea"></div></router-link> -->
     </div>
     <div class="list">
-      <p class="title1">Lists of Animals</p>
+      <p class="title1">Murmurs
       <hr />
       <br />
       <div class="listleft">
-        <li class="listtitle">Class1</li>
-        <li @click="content" class="listfont">animal1</li>
-        <li class="listfont">animal2</li>
-        <li class="listfont">animal3</li>
+        <li @click="all_result" class="listfont">All murmurs</li>
+        <li @click="searchAnimal(1)" class="listfont">Cat</li>
+        <li @click="searchAnimal(2)" class="listfont">Dog</li>
+        <li @click="searchAnimal(3)" class="listfont">Horse</li>
         <br />
-        <li class="listtitle">Class3</li>
+        <!-- <li class="listtitle">Class3</li>
         <li class="listfont">animal1</li>
         <li class="listfont">animal2</li>
-        <li class="listfont">animal3</li>
+        <li class="listfont">animal3</li> -->
       </div>
       <div class="listright">
-        <li class="listtitle">Class2</li>
-        <li class="listfont">animal1</li>
+        <!-- <li class="listtitle">Class2</li> -->
+        <!-- <li class="listfont">animal1</li>
         <li class="listfont">animal2</li>
         <li class="listfont">animal3</li>
+        <li class="listfont">animal4</li> -->
         <br />
-        <li class="listtitle">Class4</li>
+        <!-- <li class="listtitle">Class4</li>
         <li class="listfont">animal1</li>
         <li class="listfont">animal2</li>
-        <li class="listfont">animal3</li>
+        <li class="listfont">animal3</li> -->
       </div>
-      <hr />
+      <!-- <hr /> -->
     </div>
-    <div class="latest">
+    <!-- <div class="latest">
       <p class="title1">Latest Updates</p>
       <hr />
       <br />
@@ -59,7 +61,7 @@
       <p class="lattime">2022/04/11 | 50 Comments</p>
       <br />
       <hr />
-    </div>
+    </div> -->
 
     <BottomBar></BottomBar>
   </div>
@@ -81,6 +83,11 @@ export default {
   },
 
   methods: {
+    data(){
+      return {
+        anmail:""
+      }
+    },
     content() {
       this.$router.push("/content");
     },
@@ -92,11 +99,37 @@ export default {
         });
       }
     },
+    all_result() {
+        this.$router.push({
+          path: "/result/",
+          query: {searchContent: " "},
+        });
+    },
+    searchAnimal(animal) {
+      if (animal == 1){this.anmail = "cat"}
+      if (animal == 2){this.anmail = "dog"}
+      if (animal == 3){this.anmail = "horse"}
+        this.$router.push({
+          path: "/result/",
+          query: {searchContent: this.anmail},
+        });
+    },
   },
 };
 </script>
 
 <style>
+.box{
+  min-height: 400px;
+}
+.title2{
+  color: #2440b3;
+  font-size: 16px;
+  position:relative;
+  top:-50px;
+  left: 21%;
+  cursor: pointer;
+}
 .search_box {
   height: 0;
 }
@@ -105,13 +138,12 @@ export default {
   margin: 0 auto;
   width: 63.2%;
   height: 6em;
-  position: relative;
-  top: 5em;
+  margin-top: 8em;
   /* background-color: aqua; */
 }
 
 input {
-  width: 77.7%;
+  width: 94.3%;
   height: 50px;
   border: 0.1em solid #000000;
   padding: 0 0 0 40px;
@@ -140,11 +172,11 @@ input {
 }
 
 .list {
-  height: 400px;
+  height: 300px;
   width: 63.2%;
   margin: 0 auto;
   position: relative;
-  top: 5em;
+  top: 2em;
 }
 
 .list li {
@@ -160,11 +192,14 @@ input {
 
 .listfont {
   cursor: pointer;
+  color: #515151;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .listleft {
   float: left;
-  width: 50px;
+  width: 100px;
   margin-right: 10px;
   /* background-color: aqua; */
 }
@@ -179,7 +214,7 @@ input {
 
 .title1 {
   color: rgb(0, 0, 0);
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .lattitle {
