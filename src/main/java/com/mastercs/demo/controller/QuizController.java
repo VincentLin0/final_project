@@ -61,11 +61,7 @@ public class QuizController {
         //add to UserQuestion table
         User user = userRepository.findUserByUsername(username);
         UserQuestion userQuestion = new UserQuestion();
-        userQuestion.setUser(user);
-        userQuestion.setQuestion(question);
-        userQuestion.setOptions(option);
-        userQuestion.setName(option.getName());
-        userQuestionRepository.save(userQuestion);
+        saveToUserQuestion(userQuestion,user,question,option);
 
         // get answer
         Options answer = optionRepository.findOptionsByNameAndQuestion(EnumOption.OPTIONS_CORRECT,question);
@@ -167,6 +163,15 @@ public class QuizController {
             question.setAudio(filePath+question.getAudio());
         }
         return question;
+    }
+
+    private void saveToUserQuestion(UserQuestion userQuestion,User user, Question question,Options option)
+    {
+        userQuestion.setUser(user);
+        userQuestion.setQuestion(question);
+        userQuestion.setOptions(option);
+        userQuestion.setName(option.getName());
+        userQuestionRepository.save(userQuestion);
     }
 
 }

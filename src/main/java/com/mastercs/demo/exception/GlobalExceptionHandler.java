@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(value = AccessDeniedException.class)
     public Result handler(AccessDeniedException e) {
-        log.error("security权限不足：----------------{}", e.getMessage());
+        log.error("security: No authorization ----------------{}", e.getMessage());
         return Result.error("403", e.getMessage());
     }
 
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Result handler(MethodArgumentNotValidException e) {
-        log.error("实体校验异常：----------------{}", e.getMessage());
+        log.error("Method Argument Not Valid:----------------{}", e.getMessage());
         BindingResult bindingResult = e.getBindingResult();
         ObjectError objectError = bindingResult.getAllErrors().stream().findFirst().get();
         return Result.error("400", objectError.getDefaultMessage());
@@ -42,14 +42,14 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = IllegalArgumentException.class)
     public Result handler(IllegalArgumentException e) {
-        log.error("Assert异常：----------------{}", e.getMessage());
+        log.error("Assert Error:----------------{}", e.getMessage());
         return Result.error("400",e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
     public Result handler(RuntimeException e) {
-        log.error("运行时异常：----------------{}", e.getMessage());
+        log.error("Runtime Error: ----------------{}", e.getMessage());
         return Result.error("400", e.getMessage());
     }
 }

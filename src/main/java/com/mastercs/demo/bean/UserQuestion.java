@@ -33,7 +33,7 @@ public class UserQuestion {
     private Options options;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 20, name = "name")
     private EnumOption name;
 
 //    public UserQuestion()

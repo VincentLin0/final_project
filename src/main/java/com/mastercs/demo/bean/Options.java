@@ -18,11 +18,12 @@ public class Options {
     private Question question;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(name = "name")
     private EnumOption name;
 
     @NotBlank
     @Size(max = 100)
+    @Column(name = "option_title")
     private String optionTitle;
 
     public Options() {

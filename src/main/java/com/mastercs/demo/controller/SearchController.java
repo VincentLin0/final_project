@@ -40,21 +40,7 @@ public class SearchController {
         LambdaQueryWrapper<Knowledge> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(Knowledge::getTitle, requestSearch.getSearchContent());
         queryWrapper.or().like(Knowledge::getDescription, requestSearch.getSearchContent());
-        queryWrapper.orderByDesc(Knowledge::getId);
-        Page<Knowledge> page = knowledgeService.page(new Page<>(requestSearch.getPageNum(), requestSearch.getPageSize()), queryWrapper);
-
-        Page<KnowledgeDTO> returnPage = new Page<>();
-        BeanUtil.copyProperties(page, returnPage);
-        List<Knowledge> records = page.getRecords();
-        List<KnowledgeDTO> list = new ArrayList<>();
-        records.forEach(u -> {
-            KnowledgeDTO knowledgeDTO = new KnowledgeDTO();
-            Knowledge knowledge = setCoverUrl(u);
-            BeanUtil.copyProperties(knowledge, knowledgeDTO);
-            list.add(knowledgeDTO);
-        });
-        returnPage.setRecords(list);
-        return Result.success(returnPage);
+        return setPage(requestSearch, queryWrapper);
     }
 
     //collect or cancel collect
@@ -81,20 +67,7 @@ public class SearchController {
     public Result<?> page(@RequestBody Receive requestSearch) {
         //分页查询
         LambdaQueryWrapper<Knowledge> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.orderByDesc(Knowledge::getId);
-        Page<Knowledge> page = knowledgeService.page(new Page<>(requestSearch.getPageNum(), requestSearch.getPageSize()), queryWrapper);
-        Page<KnowledgeDTO> returnPage = new Page<>();
-        BeanUtil.copyProperties(page, returnPage);
-        List<Knowledge> records = page.getRecords();
-        List<KnowledgeDTO> list = new ArrayList<>();
-        records.forEach(u -> {
-            KnowledgeDTO knowledgeDTO = new KnowledgeDTO();
-            Knowledge knowledge = setCoverUrl(u);
-            BeanUtil.copyProperties(knowledge, knowledgeDTO);
-            list.add(knowledgeDTO);
-        });
-        returnPage.setRecords(list);
-        return Result.success(returnPage);
+        return setPage(requestSearch, queryWrapper);
     }
 
 
@@ -167,6 +140,23 @@ public class SearchController {
         return Result.success(list);
     }
 
+    private Result<?> setPage(@RequestBody Receive requestSearch, LambdaQueryWrapper<Knowledge> queryWrapper) {
+        queryWrapper.orderByDesc(Knowledge::getId);
+        Page<Knowledge> page = knowledgeService.page(new Page<>(requestSearch.getPageNum(), requestSearch.getPageSize()), queryWrapper);
+
+        Page<KnowledgeDTO> returnPage = new Page<>();
+        BeanUtil.copyProperties(page, returnPage);
+        List<Knowledge> records = page.getRecords();
+        List<KnowledgeDTO> list = new ArrayList<>();
+        records.forEach(u -> {
+            KnowledgeDTO knowledgeDTO = new KnowledgeDTO();
+            Knowledge knowledge = setCoverUrl(u);
+            BeanUtil.copyProperties(knowledge, knowledgeDTO);
+            list.add(knowledgeDTO);
+        });
+        returnPage.setRecords(list);
+        return Result.success(returnPage);
+    }
 
 }
 
